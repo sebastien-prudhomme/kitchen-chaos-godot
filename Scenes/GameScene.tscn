@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://wxl71y8secko"]
+
+[ext_resource type="Material" uid="uid://cll20ha4go06l" path="res://Materials/Floor.tres" id="1_eelvn"]
+[ext_resource type="Script" path="res://Scripts/Player.cs" id="2_lunro"]
+[ext_resource type="PackedScene" uid="uid://rebdmps1ltbh" path="res://Prefabs/PlayerVisual.glb" id="3_1gf3s"]
+
+[sub_resource type="Environment" id="Environment_qui31"]
+
+[node name="GameScene" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_qui31")
+
+[node name="Camera" type="Camera3D" parent="."]
+transform = Transform3D(-1, 6.28867e-08, -6.0729e-08, 0, 0.694658, 0.71934, 8.74228e-08, 0.71934, -0.694658, 0, 21.5, -21.3)
+fov = 20.0
+
+[node name="DirectionalLight" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, 0.383022, -0.321394, 0, 0.642788, 0.766044, 0.5, 0.663414, -0.55667, 0, 10, 0)
+shadow_enabled = true
+
+[node name="Floor" type="CSGBox3D" parent="."]
+size = Vector3(50, 0, 50)
+material = ExtResource("1_eelvn")
+
+[node name="Player" type="Node3D" parent="."]
+script = ExtResource("2_lunro")
+
+[node name="PlayerVisual" parent="Player" instance=ExtResource("3_1gf3s")]
