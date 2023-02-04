@@ -7,32 +7,6 @@
 
 [sub_resource type="Environment" id="Environment_qui31"]
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_q8e8v"]
-animation = &"Idle"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_dsifi"]
-animation = &"Walk"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_8w6p4"]
-advance_mode = 2
-advance_expression = "isWalking == true"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_cosg8"]
-advance_mode = 2
-advance_expression = "isWalking == false"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_07qbq"]
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_lgfpj"]
-states/Idle/node = SubResource("AnimationNodeAnimation_q8e8v")
-states/Idle/position = Vector2(336, 98)
-states/Walk/node = SubResource("AnimationNodeAnimation_dsifi")
-states/Walk/position = Vector2(546, 70)
-transitions = ["Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_8w6p4"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_cosg8"), "Start", "Idle", SubResource("AnimationNodeStateMachineTransition_07qbq")]
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_72edu"]
-
 [sub_resource type="Animation" id="Animation_21xvc"]
 resource_name = "Idle"
 loop_mode = 1
@@ -78,6 +52,32 @@ _data = {
 "Walk": SubResource("Animation_nu5hv")
 }
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_q8e8v"]
+animation = &"Idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_dsifi"]
+animation = &"Walk"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_8w6p4"]
+advance_mode = 2
+advance_expression = "isWalking == true"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_cosg8"]
+advance_mode = 2
+advance_expression = "isWalking == false"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_07qbq"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_lgfpj"]
+states/Idle/node = SubResource("AnimationNodeAnimation_q8e8v")
+states/Idle/position = Vector2(336, 98)
+states/Walk/node = SubResource("AnimationNodeAnimation_dsifi")
+states/Walk/position = Vector2(546, 70)
+transitions = ["Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_8w6p4"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_cosg8"), "Start", "Idle", SubResource("AnimationNodeStateMachineTransition_07qbq")]
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_72edu"]
+
 [node name="GameScene" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -98,16 +98,17 @@ material = ExtResource("1_eelvn")
 [node name="Player" type="Node3D" parent="."]
 script = ExtResource("2_lunro")
 
-[node name="PlayerAnimationTree" type="AnimationTree" parent="Player"]
+[node name="PlayerAnimation" type="AnimationPlayer" parent="Player"]
+libraries = {
+"": SubResource("AnimationLibrary_mwgf0")
+}
+
+[node name="PlayerAnimationTree" type="AnimationTree" parent="Player" node_paths=PackedStringArray("player")]
 tree_root = SubResource("AnimationNodeStateMachine_lgfpj")
 anim_player = NodePath("../PlayerAnimation")
 active = true
 parameters/playback = SubResource("AnimationNodeStateMachinePlayback_72edu")
 script = ExtResource("3_igsss")
-
-[node name="PlayerAnimation" type="AnimationPlayer" parent="Player"]
-libraries = {
-"": SubResource("AnimationLibrary_mwgf0")
-}
+player = NodePath("..")
 
 [node name="PlayerVisual" parent="Player" instance=ExtResource("3_1gf3s")]
