@@ -98,7 +98,7 @@ material = ExtResource("1_eelvn")
 [node name="Player" type="Node3D" parent="."]
 script = ExtResource("2_lunro")
 
-[node name="AnimationTree" type="AnimationTree" parent="Player"]
+[node name="PlayerAnimationTree" type="AnimationTree" parent="Player"]
 tree_root = SubResource("AnimationNodeStateMachine_lgfpj")
 anim_player = NodePath("../PlayerAnimation")
 active = true
