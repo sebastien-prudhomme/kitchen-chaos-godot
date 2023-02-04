@@ -2,7 +2,8 @@ using Godot;
 using System;
 
 public partial class Player : Node3D {
-	private float moveSpeed = 7f;
+	[Export]
+    private float moveSpeed = 7f;
 	
 	public override void _Process(double delta) {
 		Vector2 inputVector = new Vector2(0f ,0f);

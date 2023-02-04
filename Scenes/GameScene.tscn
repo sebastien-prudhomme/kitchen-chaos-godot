@@ -1,10 +1,55 @@
-[gd_scene load_steps=5 format=3 uid="uid://wxl71y8secko"]
+[gd_scene load_steps=8 format=3 uid="uid://wxl71y8secko"]
 
 [ext_resource type="Material" uid="uid://cll20ha4go06l" path="res://Materials/Floor.tres" id="1_eelvn"]
 [ext_resource type="Script" path="res://Scripts/Player.cs" id="2_lunro"]
 [ext_resource type="PackedScene" uid="uid://rebdmps1ltbh" path="res://Prefabs/PlayerVisual.glb" id="3_1gf3s"]
 
 [sub_resource type="Environment" id="Environment_qui31"]
+
+[sub_resource type="Animation" id="Animation_21xvc"]
+resource_name = "Idle"
+loop_mode = 1
+step = 0.0166667
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerVisual/PlayerVisual2/Head")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 1.549, 0, 0.5, 1, 0, 1.606, 0, 1, 1, 0, 1.549, 0)
+tracks/1/type = "position_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PlayerVisual/PlayerVisual2/Body")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0, 0.65, 0, 1, 1, 0, 0.65, 0)
+
+[sub_resource type="Animation" id="Animation_nu5hv"]
+resource_name = "Walk"
+length = 0.166668
+loop_mode = 1
+step = 0.0166667
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerVisual/PlayerVisual2/Head")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 1.549, 0, 0.05, 1, 0, 1.671, 0, 0.1, 1, 0, 1.549, 0)
+tracks/1/type = "position_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PlayerVisual/PlayerVisual2/Body")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0, 0.65, 0, 0.1, 1, 0, 0.887, 0, 0.166667, 1, 0, 0.65, 0)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mwgf0"]
+_data = {
+"Idle": SubResource("Animation_21xvc"),
+"Walk": SubResource("Animation_nu5hv")
+}
 
 [node name="GameScene" type="Node3D"]
 
@@ -25,5 +70,10 @@ material = ExtResource("1_eelvn")
 
 [node name="Player" type="Node3D" parent="."]
 script = ExtResource("2_lunro")
+
+[node name="PlayerAnimation" type="AnimationPlayer" parent="Player"]
+libraries = {
+"": SubResource("AnimationLibrary_mwgf0")
+}
 
 [node name="PlayerVisual" parent="Player" instance=ExtResource("3_1gf3s")]
