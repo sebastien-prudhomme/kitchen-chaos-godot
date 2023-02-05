@@ -1,5 +1,6 @@
-[gd_scene load_steps=16 format=3 uid="uid://wxl71y8secko"]
+[gd_scene load_steps=17 format=3 uid="uid://boqioso6i3x5t"]
 
+[ext_resource type="Script" path="res://Scripts/GameInput.cs" id="1_b0oex"]
 [ext_resource type="Material" uid="uid://cll20ha4go06l" path="res://Materials/Floor.tres" id="1_eelvn"]
 [ext_resource type="Script" path="res://Scripts/Player.cs" id="2_lunro"]
 [ext_resource type="PackedScene" uid="uid://rebdmps1ltbh" path="res://Prefabs/PlayerVisual.glb" id="3_1gf3s"]
@@ -91,12 +92,16 @@ fov = 20.0
 transform = Transform3D(-0.866025, 0.383022, -0.321394, 0, 0.642788, 0.766044, 0.5, 0.663414, -0.55667, 0, 10, 0)
 shadow_enabled = true
 
+[node name="GameInput" type="Node" parent="."]
+script = ExtResource("1_b0oex")
+
 [node name="Floor" type="CSGBox3D" parent="."]
 size = Vector3(50, 0, 50)
 material = ExtResource("1_eelvn")
 
-[node name="Player" type="Node3D" parent="."]
+[node name="Player" type="Node3D" parent="." node_paths=PackedStringArray("gameInput")]
 script = ExtResource("2_lunro")
+gameInput = NodePath("../GameInput")
 
 [node name="PlayerAnimation" type="AnimationPlayer" parent="Player"]
 libraries = {
