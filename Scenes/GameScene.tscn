@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://boqioso6i3x5t"]
+[gd_scene load_steps=19 format=3 uid="uid://boqioso6i3x5t"]
 
 [ext_resource type="Script" path="res://Scripts/GameInput.cs" id="1_b0oex"]
 [ext_resource type="Material" uid="uid://cll20ha4go06l" path="res://Materials/Floor.tres" id="1_eelvn"]
@@ -79,6 +79,11 @@ transitions = ["Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_72edu"]
 
+[sub_resource type="BoxMesh" id="BoxMesh_0180j"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ru6ra"]
+radius = 0.7
+
 [node name="GameScene" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -99,9 +104,10 @@ script = ExtResource("1_b0oex")
 size = Vector3(50, 0, 50)
 material = ExtResource("1_eelvn")
 
-[node name="Player" type="Node3D" parent="." node_paths=PackedStringArray("gameInput")]
+[node name="Player" type="Node3D" parent="." node_paths=PackedStringArray("gameInput", "shapeCast")]
 script = ExtResource("2_lunro")
 gameInput = NodePath("../GameInput")
+shapeCast = NodePath("../PlayerShapeCast")
 
 [node name="PlayerAnimation" type="AnimationPlayer" parent="Player"]
 libraries = {
@@ -117,3 +123,13 @@ script = ExtResource("3_igsss")
 player = NodePath("..")
 
 [node name="PlayerVisual" parent="Player" instance=ExtResource("3_1gf3s")]
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="."]
+transform = Transform3D(10.8845, 0, 0, 0, 9.97872, 0, 0, 0, 2.41876, 2.05722, -0.0324106, 3.4589)
+use_collision = true
+mesh = SubResource("BoxMesh_0180j")
+
+[node name="PlayerShapeCast" type="ShapeCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_ru6ra")
+target_position = Vector3(0, 0, 0)
