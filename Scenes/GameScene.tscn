@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://boqioso6i3x5t"]
+[gd_scene load_steps=18 format=3 uid="uid://boqioso6i3x5t"]
 
 [ext_resource type="Script" path="res://Scripts/GameInput.cs" id="1_b0oex"]
 [ext_resource type="Material" uid="uid://cll20ha4go06l" path="res://Materials/Floor.tres" id="1_eelvn"]
@@ -79,8 +79,6 @@ transitions = ["Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_72edu"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_0180j"]
-
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ru6ra"]
 radius = 0.7
 
@@ -123,11 +121,6 @@ script = ExtResource("3_igsss")
 player = NodePath("..")
 
 [node name="PlayerVisual" parent="Player" instance=ExtResource("3_1gf3s")]
-
-[node name="CSGMesh3D" type="CSGMesh3D" parent="."]
-transform = Transform3D(10.8845, 0, 0, 0, 9.97872, 0, 0, 0, 2.41876, 2.05722, -0.0324106, 3.4589)
-use_collision = true
-mesh = SubResource("BoxMesh_0180j")
 
 [node name="PlayerShapeCast" type="ShapeCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
