@@ -23,6 +23,28 @@ public partial class Player : Node3D {
 
             bool canMove = !shapeCast.IsColliding();
 
+            if (!canMove) {
+                Vector3 moveDirX = new Vector3(moveDir.X, 0, 0).Normalized();
+                shapeCast.TargetPosition = moveDirX * moveDistance;
+                shapeCast.ForceShapecastUpdate();
+
+                canMove = !shapeCast.IsColliding();
+
+                if (canMove) {
+                    moveDir = moveDirX;
+                } else {
+                    Vector3 moveDirZ = new Vector3(0, 0, moveDir.Z).Normalized();
+                    shapeCast.TargetPosition = moveDirZ * moveDistance;
+                    shapeCast.ForceShapecastUpdate();
+
+                    canMove = !shapeCast.IsColliding();
+
+                    if (canMove) {
+                        moveDir = moveDirZ;
+                    }
+                }
+            }
+
             if (canMove) {
                 Position += moveDir * moveDistance;
             }
