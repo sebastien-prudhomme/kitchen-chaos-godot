@@ -1,51 +1,26 @@
-[gd_scene load_steps=18 format=3 uid="uid://boqioso6i3x5t"]
+[gd_scene load_steps=20 format=3 uid="uid://boqioso6i3x5t"]
 
 [ext_resource type="Script" path="res://Scripts/GameInput.cs" id="1_b0oex"]
 [ext_resource type="Material" uid="uid://cll20ha4go06l" path="res://Materials/Floor.tres" id="1_eelvn"]
 [ext_resource type="Script" path="res://Scripts/Player.cs" id="2_lunro"]
-[ext_resource type="PackedScene" uid="uid://rebdmps1ltbh" path="res://Prefabs/PlayerVisual.glb" id="3_1gf3s"]
+[ext_resource type="PackedScene" uid="uid://cpv1thrfvts64" path="res://Prefabs/ClearCounterVisual.gltf" id="3_dl6t5"]
 [ext_resource type="Script" path="res://Scripts/PlayerAnimationTree.cs" id="3_igsss"]
+[ext_resource type="PackedScene" uid="uid://c3x5yvuydmhpi" path="res://Prefabs/PlayerVisual.gltf" id="6_iyjw8"]
 
 [sub_resource type="Environment" id="Environment_qui31"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_uv1tm"]
 
 [sub_resource type="Animation" id="Animation_21xvc"]
 resource_name = "Idle"
 loop_mode = 1
 step = 0.0166667
-tracks/0/type = "position_3d"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("PlayerVisual/PlayerVisual2/Head")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, 0, 1.549, 0, 0.5, 1, 0, 1.606, 0, 1, 1, 0, 1.549, 0)
-tracks/1/type = "position_3d"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("PlayerVisual/PlayerVisual2/Body")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = PackedFloat32Array(0, 1, 0, 0.65, 0, 1, 1, 0, 0.65, 0)
 
 [sub_resource type="Animation" id="Animation_nu5hv"]
 resource_name = "Walk"
 length = 0.166668
 loop_mode = 1
 step = 0.0166667
-tracks/0/type = "position_3d"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("PlayerVisual/PlayerVisual2/Head")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, 0, 1.549, 0, 0.05, 1, 0, 1.671, 0, 0.1, 1, 0, 1.549, 0)
-tracks/1/type = "position_3d"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("PlayerVisual/PlayerVisual2/Body")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = PackedFloat32Array(0, 1, 0, 0.65, 0, 0.1, 1, 0, 0.887, 0, 0.166667, 1, 0, 0.65, 0)
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_mwgf0"]
 _data = {
@@ -102,6 +77,17 @@ script = ExtResource("1_b0oex")
 size = Vector3(50, 0, 50)
 material = ExtResource("1_eelvn")
 
+[node name="CleanCounter" type="Node3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 3)
+
+[node name="ClearCounterVisual" parent="CleanCounter" instance=ExtResource("3_dl6t5")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="CleanCounter"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CleanCounter/StaticBody3D"]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_uv1tm")
+
 [node name="Player" type="Node3D" parent="." node_paths=PackedStringArray("gameInput", "shapeCast")]
 script = ExtResource("2_lunro")
 gameInput = NodePath("../GameInput")
@@ -120,7 +106,7 @@ parameters/playback = SubResource("AnimationNodeStateMachinePlayback_72edu")
 script = ExtResource("3_igsss")
 player = NodePath("..")
 
-[node name="PlayerVisual" parent="Player" instance=ExtResource("3_1gf3s")]
+[node name="PlayerVisual" parent="Player" instance=ExtResource("6_iyjw8")]
 
 [node name="PlayerShapeCast" type="ShapeCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
