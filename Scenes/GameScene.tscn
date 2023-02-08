@@ -1,15 +1,13 @@
-[gd_scene load_steps=20 format=3 uid="uid://boqioso6i3x5t"]
+[gd_scene load_steps=19 format=3 uid="uid://boqioso6i3x5t"]
 
 [ext_resource type="Script" path="res://Scripts/GameInput.cs" id="1_b0oex"]
 [ext_resource type="Material" uid="uid://cll20ha4go06l" path="res://Materials/Floor.tres" id="1_eelvn"]
 [ext_resource type="Script" path="res://Scripts/Player.cs" id="2_lunro"]
-[ext_resource type="PackedScene" uid="uid://cpv1thrfvts64" path="res://Prefabs/ClearCounterVisual.gltf" id="3_dl6t5"]
+[ext_resource type="PackedScene" uid="uid://b0c782vrkhk7p" path="res://Prefabs/CleanCounter.tscn" id="3_fqu1s"]
 [ext_resource type="Script" path="res://Scripts/PlayerAnimationTree.cs" id="3_igsss"]
 [ext_resource type="PackedScene" uid="uid://c3x5yvuydmhpi" path="res://Prefabs/PlayerVisual.gltf" id="6_iyjw8"]
 
 [sub_resource type="Environment" id="Environment_qui31"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_uv1tm"]
 
 [sub_resource type="Animation" id="Animation_21xvc"]
 resource_name = "Idle"
@@ -77,16 +75,11 @@ script = ExtResource("1_b0oex")
 size = Vector3(50, 0, 50)
 material = ExtResource("1_eelvn")
 
-[node name="CleanCounter" type="Node3D" parent="."]
+[node name="CleanCounter2" parent="." instance=ExtResource("3_fqu1s")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1.5, 0, 3)
+
+[node name="CleanCounter" parent="." instance=ExtResource("3_fqu1s")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 3)
-
-[node name="ClearCounterVisual" parent="CleanCounter" instance=ExtResource("3_dl6t5")]
-
-[node name="StaticBody3D" type="StaticBody3D" parent="CleanCounter"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CleanCounter/StaticBody3D"]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0.5, 0)
-shape = SubResource("BoxShape3D_uv1tm")
 
 [node name="Player" type="Node3D" parent="." node_paths=PackedStringArray("gameInput", "shapeCast")]
 script = ExtResource("2_lunro")

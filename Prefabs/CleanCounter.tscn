@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://b0c782vrkhk7p"]
+
+[ext_resource type="Script" path="res://Scripts/CleanCounter.cs" id="1_quffd"]
+[ext_resource type="PackedScene" uid="uid://cpv1thrfvts64" path="res://Prefabs/ClearCounterVisual.gltf" id="2_odcs4"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_uv1tm"]
+
+[node name="CleanCounter" type="Node3D"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 3)
+script = ExtResource("1_quffd")
+
+[node name="ClearCounterVisual" parent="." instance=ExtResource("2_odcs4")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_uv1tm")

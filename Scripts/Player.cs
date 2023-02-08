@@ -1,4 +1,5 @@
 using Godot;
+using Godot.Collections;
 using System;
 
 public partial class Player : Node3D {
@@ -7,8 +8,42 @@ public partial class Player : Node3D {
     [Export] private ShapeCast3D shapeCast;
 
     private bool isWalking;
+    private Vector3 lastInteractDir;
 
 	public override void _PhysicsProcess(double delta) {
+        HandleMovement(delta);
+        HandleInteractions();
+	}
+
+	public void HandleInteractions() {
+		Vector2 inputVector = gameInput.GetMovementVectorNormalized();
+
+        Vector3 moveDir = new Vector3(inputVector.X, 0f, inputVector.Y);
+
+        if (moveDir != Vector3.Zero) {
+            lastInteractDir = moveDir;
+        }
+
+        float interactDistance = 2f;
+
+        PhysicsRayQueryParameters3D query = new PhysicsRayQueryParameters3D();
+        query.From = GlobalPosition;
+        query.To = GlobalPosition + (lastInteractDir * interactDistance);
+        query.CollisionMask = 0x00000001; // Counters
+
+        Dictionary intersection = GetWorld3D().DirectSpaceState.IntersectRay(query);
+
+        if (intersection.Count > 0) {
+            Node collider = (Node)intersection["collider"];
+            Node colliderParent = collider.GetParent();
+
+            if (colliderParent.HasMethod("Interact")) {
+                colliderParent.Call("Interact");
+            }
+        }
+    }
+
+	public void HandleMovement(double delta) {
 		Vector2 inputVector = gameInput.GetMovementVectorNormalized();
 
         if (inputVector.Length() > 0f) {
@@ -56,7 +91,7 @@ public partial class Player : Node3D {
         } else {
             isWalking = false;
         }
-	}
+    }
 
     public bool IsWalking() {
         return isWalking;
