@@ -10,6 +10,38 @@ public partial class Player : Node3D {
     private bool isWalking;
     private Vector3 lastInteractDir;
 
+    public override void _Ready() {
+        gameInput.InteractActionPressed += OnInteractActionPressed;
+    }
+
+    private void OnInteractActionPressed() {
+		Vector2 inputVector = gameInput.GetMovementVectorNormalized();
+
+        Vector3 moveDir = new Vector3(inputVector.X, 0f, inputVector.Y);
+
+        if (moveDir != Vector3.Zero) {
+            lastInteractDir = moveDir;
+        }
+
+        float interactDistance = 2f;
+
+        PhysicsRayQueryParameters3D query = new PhysicsRayQueryParameters3D();
+        query.From = GlobalPosition;
+        query.To = GlobalPosition + (lastInteractDir * interactDistance);
+        query.CollisionMask = 0x00000001; // Counters
+
+        Dictionary intersection = GetWorld3D().DirectSpaceState.IntersectRay(query);
+
+        if (intersection.Count > 0) {
+            Node collider = (Node)intersection["collider"];
+            Node colliderParent = collider.GetParent();
+
+            if (colliderParent.HasMethod("Interact")) {
+                colliderParent.Call("Interact");
+            }
+        }
+    }
+
 	public override void _PhysicsProcess(double delta) {
         HandleMovement(delta);
         HandleInteractions();
@@ -38,7 +70,6 @@ public partial class Player : Node3D {
             Node colliderParent = collider.GetParent();
 
             if (colliderParent.HasMethod("Interact")) {
-                colliderParent.Call("Interact");
             }
         }
     }
