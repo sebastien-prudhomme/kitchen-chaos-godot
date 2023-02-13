@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://Scripts/Player.cs" id="2_lunro"]
 [ext_resource type="PackedScene" uid="uid://b0c782vrkhk7p" path="res://Prefabs/CleanCounter.tscn" id="3_fqu1s"]
 [ext_resource type="Script" path="res://Scripts/PlayerAnimationTree.cs" id="3_igsss"]
-[ext_resource type="PackedScene" uid="uid://c3x5yvuydmhpi" path="res://Prefabs/PlayerVisual.gltf" id="6_iyjw8"]
+[ext_resource type="PackedScene" uid="uid://sv1535r1aeon" path="res://PrefabsVisual/PlayerVisual.tscn" id="6_g53ns"]
 
 [sub_resource type="Environment" id="Environment_qui31"]
 
@@ -98,7 +98,7 @@ parameters/playback = SubResource("AnimationNodeStateMachinePlayback_72edu")
 script = ExtResource("3_igsss")
 player = NodePath("..")
 
-[node name="PlayerVisual" parent="Player" instance=ExtResource("6_iyjw8")]
+[node name="PlayerVisual" parent="Player" instance=ExtResource("6_g53ns")]
 
 [node name="PlayerShapeCast" type="ShapeCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
