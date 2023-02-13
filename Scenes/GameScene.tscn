@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Scripts/GameInput.cs" id="1_b0oex"]
 [ext_resource type="Material" uid="uid://cll20ha4go06l" path="res://Materials/Floor.tres" id="1_eelvn"]
 [ext_resource type="Script" path="res://Scripts/Player.cs" id="2_lunro"]
-[ext_resource type="PackedScene" uid="uid://b0c782vrkhk7p" path="res://Prefabs/ClearCounter.tscn" id="3_fqu1s"]
+[ext_resource type="PackedScene" uid="uid://bypfp8hk77a0q" path="res://Prefabs/ClearCounter.tscn" id="3_fqu1s"]
 [ext_resource type="Script" path="res://Scripts/PlayerAnimationTree.cs" id="3_igsss"]
 [ext_resource type="PackedScene" uid="uid://sv1535r1aeon" path="res://PrefabsVisual/PlayerVisual.tscn" id="6_g53ns"]
 
