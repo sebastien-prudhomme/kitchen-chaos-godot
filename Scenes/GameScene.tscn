@@ -1,9 +1,9 @@
-[gd_scene load_steps=19 format=3 uid="uid://boqioso6i3x5t"]
+[gd_scene load_steps=19 format=3 uid="uid://bughgn04oknar"]
 
 [ext_resource type="Script" path="res://Scripts/GameInput.cs" id="1_b0oex"]
 [ext_resource type="Material" uid="uid://cll20ha4go06l" path="res://Materials/Floor.tres" id="1_eelvn"]
 [ext_resource type="Script" path="res://Scripts/Player.cs" id="2_lunro"]
-[ext_resource type="PackedScene" uid="uid://b0c782vrkhk7p" path="res://Prefabs/CleanCounter.tscn" id="3_fqu1s"]
+[ext_resource type="PackedScene" uid="uid://b0c782vrkhk7p" path="res://Prefabs/ClearCounter.tscn" id="3_fqu1s"]
 [ext_resource type="Script" path="res://Scripts/PlayerAnimationTree.cs" id="3_igsss"]
 [ext_resource type="PackedScene" uid="uid://sv1535r1aeon" path="res://PrefabsVisual/PlayerVisual.tscn" id="6_g53ns"]
 
@@ -75,10 +75,10 @@ script = ExtResource("1_b0oex")
 size = Vector3(50, 0, 50)
 material = ExtResource("1_eelvn")
 
-[node name="CleanCounter2" parent="." instance=ExtResource("3_fqu1s")]
+[node name="ClearCounter2" parent="." instance=ExtResource("3_fqu1s")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1.5, 0, 3)
 
-[node name="CleanCounter" parent="." instance=ExtResource("3_fqu1s")]
+[node name="ClearCounter" parent="." instance=ExtResource("3_fqu1s")]
 
 [node name="Player" type="Node3D" parent="." node_paths=PackedStringArray("gameInput", "shapeCast")]
 script = ExtResource("2_lunro")
