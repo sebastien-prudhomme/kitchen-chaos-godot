@@ -19,14 +19,14 @@ tracks/0/enabled = true
 tracks/0/path = NodePath("PlayerVisual/Head")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, 0, 1.549, 0, 0.5, 1, 0, 1.606, 0, 1, 1, 0, 1.549, 0)
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, -154.9, 0.5, 1, 0, 0, -160.6, 1, 1, 0, 0, -154.9)
 tracks/1/type = "position_3d"
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/path = NodePath("PlayerVisual/Body")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
-tracks/1/keys = PackedFloat32Array(0, 1, 0, 0.65, 0, 1, 1, 0, 0.65, 0)
+tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, -65, 1, 1, 0, 0, -65)
 
 [sub_resource type="Animation" id="Animation_nu5hv"]
 resource_name = "Walk"
@@ -39,14 +39,14 @@ tracks/0/enabled = true
 tracks/0/path = NodePath("PlayerVisual/Head")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, 0, 1.549, 0, 0.05, 1, 0, 1.671, 0, 0.1, 1, 0, 1.549, 0)
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, -154.9, 0.05, 1, 0, 0, -167.1, 0.1, 1, 0, 0, -154.9)
 tracks/1/type = "position_3d"
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/path = NodePath("PlayerVisual/Body")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
-tracks/1/keys = PackedFloat32Array(0, 1, 0, 0.65, 0, 0.1, 1, 0, 0.887, 0, 0.166667, 1, 0, 0.65, 0)
+tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, -65, 0.1, 1, 0, 0, -88.7, 0.166667, 1, 0, 0, -65)
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_mwgf0"]
 _data = {
