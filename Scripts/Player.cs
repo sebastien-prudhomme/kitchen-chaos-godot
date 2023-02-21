@@ -2,7 +2,7 @@ using Godot;
 using Godot.Collections;
 using System;
 
-public partial class Player : Node3D {
+public partial class Player : Node3D, IKitchenObjectParent {
     public static Player Instance { get; private set; }
 
     [Signal] public delegate void SelectedCounterChangedEventHandler(ClearCounter selectedCounter);
@@ -10,10 +10,12 @@ public partial class Player : Node3D {
 	[Export] private float moveSpeed = 7f;
     [Export] private GameInput gameInput;
     [Export] private ShapeCast3D shapeCast;
+    [Export] private Node3D kitchenObjectHoldPoint;
 
     private bool isWalking;
     private Vector3 lastInteractDir;
     private ClearCounter selectedCounter;
+    private KitchenObject kitchenObject;
 
     public override void _EnterTree() {
         if (Instance != null) {
@@ -29,7 +31,7 @@ public partial class Player : Node3D {
 
     private void OnInteractActionPressed() {
         if (selectedCounter != null) {
-            selectedCounter.Interact();
+            selectedCounter.Interact(this);
         }
     }
 
@@ -132,5 +134,25 @@ public partial class Player : Node3D {
         this.selectedCounter = selectedCounter;
 
         EmitSignal(SignalName.SelectedCounterChanged, selectedCounter);
+    }
+
+    public Node3D GetKitchenObjectFollowTransform() {
+        return kitchenObjectHoldPoint;
+    }
+
+    public KitchenObject GetKitchenObject() {
+        return kitchenObject;
+    }
+
+    public void SetKitchenObject(KitchenObject kitchenObject) {
+        this.kitchenObject = kitchenObject;
+    }
+
+    public void ClearKitchenObject() {
+        kitchenObject = null;
+    }
+
+    public bool HasKitchenObject() {
+        return kitchenObject != null;
     }
 }

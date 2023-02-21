@@ -1,0 +1,13 @@
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://ckecu8pie8uen"]
+
+[ext_resource type="Texture2D" uid="uid://d0qhwj1lo363w" path="res://Textures/CheeseAlbedoTransparency.png" id="1_1gxic"]
+[ext_resource type="Texture2D" uid="uid://cyujdkwwus5qa" path="res://Textures/CheeseNormal.png" id="2_iprg1"]
+
+[resource]
+resource_name = "Cheese"
+cull_mode = 2
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1_1gxic")
+roughness = 0.552786
+normal_enabled = true
+normal_texture = ExtResource("2_iprg1")
