@@ -21,12 +21,14 @@ public partial class KitchenObject : Node {
 
         if (this.kitchenObjectParent != null) {
             this.kitchenObjectParent.ClearKitchenObject();
+
+            this.kitchenObjectParent.GetKitchenObjectFollowTransform().RemoveChild(this);
         }
 
         this.kitchenObjectParent = kitchenObjectParent;
 
         kitchenObjectParent.SetKitchenObject(this);
 
-        Reparent(kitchenObjectParent.GetKitchenObjectFollowTransform(), false);
+        this.kitchenObjectParent.GetKitchenObjectFollowTransform().AddChild(this);
     }
 }

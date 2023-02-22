@@ -5,7 +5,7 @@ using System;
 public partial class Player : Node3D, IKitchenObjectParent {
     public static Player Instance { get; private set; }
 
-    [Signal] public delegate void SelectedCounterChangedEventHandler(ClearCounter selectedCounter);
+    [Signal] public delegate void SelectedCounterChangedEventHandler(BaseCounter selectedCounter);
 
 	[Export] private float moveSpeed = 7f;
     [Export] private GameInput gameInput;
@@ -14,7 +14,7 @@ public partial class Player : Node3D, IKitchenObjectParent {
 
     private bool isWalking;
     private Vector3 lastInteractDir;
-    private ClearCounter selectedCounter;
+    private BaseCounter selectedCounter;
     private KitchenObject kitchenObject;
 
     public override void _EnterTree() {
@@ -63,10 +63,10 @@ public partial class Player : Node3D, IKitchenObjectParent {
             Node colliderParent = collider.GetParent();
 
             if (colliderParent.HasMethod("Interact")) {
-                ClearCounter clearCounter = (ClearCounter)colliderParent;
+                BaseCounter baseCounter = (BaseCounter)colliderParent;
 
-                if (selectedCounter != clearCounter) {
-                    SetSelectedCounter(clearCounter);
+                if (selectedCounter != baseCounter) {
+                    SetSelectedCounter(baseCounter);
                 }
             } else {
                 SetSelectedCounter(null);
@@ -130,7 +130,7 @@ public partial class Player : Node3D, IKitchenObjectParent {
         return isWalking;
     }
 
-    private void SetSelectedCounter(ClearCounter selectedCounter) {
+    private void SetSelectedCounter(BaseCounter selectedCounter) {
         this.selectedCounter = selectedCounter;
 
         EmitSignal(SignalName.SelectedCounterChanged, selectedCounter);
