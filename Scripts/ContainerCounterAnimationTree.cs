@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class ContainerCounterVisual : Node3D {
+public partial class ContainerCounterAnimationTree : AnimationTree {
     private const string OPEN_CLOSE = "OpenClose";
 
     [Export] private ContainerCounter containerCounter;
