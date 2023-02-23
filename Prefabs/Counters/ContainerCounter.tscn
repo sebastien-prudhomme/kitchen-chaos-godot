@@ -220,25 +220,22 @@ containerCounter = NodePath("..")
 
 [node name="Selected" parent="." index="3" node_paths=PackedStringArray("baseCounter", "visualNode") instance=ExtResource("2_84acs")]
 transform = Transform3D(0.0101, 0, 0, 0, -4.41485e-10, -0.0101, 0, 0.0101, -4.41485e-10, 0, 0, 0)
+visible = false
 script = ExtResource("4_jwfgt")
 baseCounter = NodePath("..")
-visualNode = NodePath("CounterSolid")
+visualNode = NodePath(".")
 
 [node name="Black" parent="Selected" index="0"]
-visible = false
 mesh = SubResource("ArrayMesh_e04c5")
 
 [node name="CounterHole" parent="Selected" index="1"]
-visible = false
 mesh = SubResource("ArrayMesh_6dxfb")
 
 [node name="CounterSolid" parent="Selected" index="2"]
-visible = false
 mesh = SubResource("ArrayMesh_cen1x")
 
 [node name="SingleDoor" parent="Selected" index="3"]
-transform = Transform3D(1.09399e-07, -1.5241e-08, -2.15882, -0.577809, -1.51027, 0, -2.50277, 0.348674, -9.4365e-08, -0.2, -40.6, -129.4)
-visible = false
+transform = Transform3D(-3.06201e-07, -1.17022e-07, -2.15882, 2.5686, 1.17022e-07, -2.57351e-07, 1.93924e-07, -1.55, 1.62986e-07, -0.2, -40.6, -129.4)
 mesh = SubResource("ArrayMesh_60gsv")
 
 [node name="Sprite3D" parent="Selected/SingleDoor" index="0"]
