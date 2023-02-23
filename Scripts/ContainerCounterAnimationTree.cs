@@ -2,21 +2,21 @@ using Godot;
 using System;
 
 public partial class ContainerCounterAnimationTree : AnimationTree {
-    private const string OPEN_CLOSE = "OpenClose";
+    private const string CONTAINER_OPEN_CLOSE = "ContainerOpenClose";
 
     [Export] private ContainerCounter containerCounter;
 
-    // private Animator animator;
+    private AnimationNodeStateMachinePlayback stateMachine;
 
-    // private void Awake() {
-    //     animator = GetComponent<Animator>();
-    // }
+    public override void _EnterTree() {
+        stateMachine = (AnimationNodeStateMachinePlayback)Get("parameters/playback");
+    }
 
-    // private void Start() {
-    //     containerCounter.OnPlayerGrabbedObject += ContainerCounter_OnPlayerGrabbedObject;
-    // }
+    public override void _Ready() {
+        containerCounter.PlayerGrabbedObject += OnPlayerGrabbedObject;
+    }
 
-    // private void ContainerCounter_OnPlayerGrabbedObject(object sender, System.EventArgs e) {
-    //     animator.SetTrigger(OPEN_CLOSE);
-    // }
+    private void OnPlayerGrabbedObject() {
+        stateMachine.Travel(CONTAINER_OPEN_CLOSE);
+    }
 }

@@ -1,27 +1,11 @@
-[gd_scene load_steps=17 format=3 uid="uid://ycliix5lciak"]
+[gd_scene load_steps=25 format=3 uid="uid://ycliix5lciak"]
 
 [ext_resource type="PackedScene" uid="uid://dh4kb45g8jd5b" path="res://Prefabs/Counters/BaseCounter.tscn" id="1_5ou0c"]
 [ext_resource type="PackedScene" uid="uid://6s6xpft8a1kj" path="res://PrefabsVisual/CountersVisuals/ContainerCounterVisual.tscn" id="2_84acs"]
 [ext_resource type="Script" path="res://Scripts/ContainerCounter.cs" id="2_cqauc"]
+[ext_resource type="Script" path="res://Scripts/ContainerCounterAnimationTree.cs" id="3_c7dey"]
 [ext_resource type="Script" path="res://Scripts/SelectedCounterVisual.cs" id="4_jwfgt"]
 [ext_resource type="Material" uid="uid://cgi0binfje14a" path="res://Materials/CounterSelected.tres" id="5_fch5c"]
-
-[sub_resource type="Animation" id="Animation_cnsk7"]
-resource_name = "ContainerOpenClose"
-length = 0.333335
-step = 0.0166667
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("ContainerCounterVisual/SingleDoor:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.166667, 0.333333),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector3(1.19209e-07, -1.5708, 1.5708), Vector3(0, -1.5708, 3.36849), Vector3(0, -1.5708, 1.5708)]
-}
 
 [sub_resource type="Animation" id="Animation_unk1g"]
 resource_name = "ContainerClosed"
@@ -40,11 +24,54 @@ tracks/0/keys = {
 "values": [Vector3(1.19209e-07, -1.5708, 1.5708)]
 }
 
+[sub_resource type="Animation" id="Animation_cnsk7"]
+resource_name = "ContainerOpenClose"
+length = 0.333335
+step = 0.0166667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ContainerCounterVisual/SingleDoor:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.166667, 0.333333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(1.19209e-07, -1.5708, 1.5708), Vector3(0, -1.5708, 3.36849), Vector3(0, -1.5708, 1.5708)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_7mvqu"]
 _data = {
 "ContainerClosed": SubResource("Animation_unk1g"),
 "ContainerOpenClose": SubResource("Animation_cnsk7")
 }
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_j6uqa"]
+animation = &"ContainerClosed"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_k71i4"]
+animation = &"ContainerOpenClose"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_qvbxp"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_xq2qt"]
+advance_mode = 0
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2jl26"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_lldbb"]
+states/ContainerClosed/node = SubResource("AnimationNodeAnimation_j6uqa")
+states/ContainerClosed/position = Vector2(365, 100)
+states/ContainerOpenClose/node = SubResource("AnimationNodeAnimation_k71i4")
+states/ContainerOpenClose/position = Vector2(592, 100)
+states/Start/position = Vector2(190, 100)
+transitions = ["Start", "ContainerClosed", SubResource("AnimationNodeStateMachineTransition_qvbxp"), "ContainerClosed", "ContainerOpenClose", SubResource("AnimationNodeStateMachineTransition_xq2qt"), "ContainerOpenClose", "ContainerClosed", SubResource("AnimationNodeStateMachineTransition_2jl26")]
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_ijsuw"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_61hnl"]
 _surfaces = [{
@@ -181,9 +208,17 @@ libraries = {
 "": SubResource("AnimationLibrary_7mvqu")
 }
 
-[node name="ContainerCounterVisual" parent="." index="1" instance=ExtResource("2_84acs")]
+[node name="AnimationTree" type="AnimationTree" parent="." index="1" node_paths=PackedStringArray("containerCounter")]
+tree_root = SubResource("AnimationNodeStateMachine_lldbb")
+anim_player = NodePath("../AnimationPlayer")
+active = true
+parameters/playback = SubResource("AnimationNodeStateMachinePlayback_ijsuw")
+script = ExtResource("3_c7dey")
+containerCounter = NodePath("..")
 
-[node name="Selected" parent="." index="2" node_paths=PackedStringArray("baseCounter", "visualNode") instance=ExtResource("2_84acs")]
+[node name="ContainerCounterVisual" parent="." index="2" instance=ExtResource("2_84acs")]
+
+[node name="Selected" parent="." index="3" node_paths=PackedStringArray("baseCounter", "visualNode") instance=ExtResource("2_84acs")]
 transform = Transform3D(0.0101, 0, 0, 0, -4.41485e-10, -0.0101, 0, 0.0101, -4.41485e-10, 0, 0, 0)
 script = ExtResource("4_jwfgt")
 baseCounter = NodePath("..")

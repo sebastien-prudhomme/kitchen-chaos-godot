@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://c8m1ny4u8hsos"]
+[gd_scene load_steps=24 format=3 uid="uid://c8m1ny4u8hsos"]
 
 [ext_resource type="Script" path="res://Scripts/GameInput.cs" id="1_b0oex"]
 [ext_resource type="Material" uid="uid://cll20ha4go06l" path="res://Materials/Floor.tres" id="1_eelvn"]
@@ -12,6 +12,8 @@
 [ext_resource type="Texture2D" uid="uid://dvkncxc73qwb2" path="res://Textures/Icons/Tomato.png" id="7_ewupi"]
 
 [sub_resource type="Environment" id="Environment_qui31"]
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_ct6u4"]
 
 [sub_resource type="Animation" id="Animation_21xvc"]
 resource_name = "Idle"
@@ -120,6 +122,12 @@ kitchenObjectResource = ExtResource("5_6w53t")
 [node name="ContainerCounter2" parent="." instance=ExtResource("4_3mvn6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5)
 kitchenObjectResource = ExtResource("6_xsknv")
+
+[node name="AnimationTree" parent="ContainerCounter2" index="1"]
+parameters/playback = SubResource("AnimationNodeStateMachinePlayback_ct6u4")
+
+[node name="SingleDoor" parent="ContainerCounter2/ContainerCounterVisual" index="3"]
+transform = Transform3D(-3.06167e-07, 5.61099e-06, -2.15882, 2.5686, -5.61098e-06, -2.57351e-07, -9.29831e-06, -1.55, -7.81491e-06, -0.2, -40.6, -129.4)
 
 [node name="Sprite3D" parent="ContainerCounter2/ContainerCounterVisual/SingleDoor" index="0"]
 texture = ExtResource("7_ewupi")
