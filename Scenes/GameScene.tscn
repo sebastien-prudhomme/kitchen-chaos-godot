@@ -4,16 +4,15 @@
 [ext_resource type="Material" uid="uid://cll20ha4go06l" path="res://Materials/Floor.tres" id="1_eelvn"]
 [ext_resource type="Script" path="res://Scripts/Player.cs" id="2_lunro"]
 [ext_resource type="Script" path="res://Scripts/PlayerAnimationTree.cs" id="3_igsss"]
+[ext_resource type="PackedScene" uid="uid://cvc2fhf8lxq5v" path="res://Prefabs/Counters/ContainerCounterBread.tscn" id="3_ru3vy"]
 [ext_resource type="PackedScene" uid="uid://cg067fwf3q3ip" path="res://Prefabs/Counters/ClearCounter.tscn" id="3_uhtyq"]
-[ext_resource type="PackedScene" uid="uid://ycliix5lciak" path="res://Prefabs/Counters/ContainerCounter.tscn" id="4_3mvn6"]
-[ext_resource type="Resource" uid="uid://b8meg8tbvpo4y" path="res://Resources/KitchenObjects/CheeseBlock.tres" id="5_6w53t"]
+[ext_resource type="PackedScene" uid="uid://d3o2lqbdrpko3" path="res://Prefabs/Counters/ContainerCounterCheeseBlock.tscn" id="4_jyrad"]
+[ext_resource type="PackedScene" uid="uid://cghvjnq5cjatc" path="res://Prefabs/Counters/ContainerCounterCabbage.tscn" id="6_djody"]
 [ext_resource type="PackedScene" uid="uid://sv1535r1aeon" path="res://PrefabsVisual/PlayerVisual.tscn" id="6_g53ns"]
-[ext_resource type="Resource" uid="uid://cinjb6kjd1uy5" path="res://Resources/KitchenObjects/Tomato.tres" id="6_xsknv"]
-[ext_resource type="Texture2D" uid="uid://dvkncxc73qwb2" path="res://Textures/Icons/Tomato.png" id="7_ewupi"]
+[ext_resource type="PackedScene" uid="uid://b0yi0nywonr8r" path="res://Prefabs/Counters/ContainerCounterMeatPattyUncooked.tscn" id="6_s2ewf"]
+[ext_resource type="PackedScene" uid="uid://cpf0t3dt4b8h6" path="res://Prefabs/Counters/ContainerCounterTomato.tscn" id="6_urssm"]
 
 [sub_resource type="Environment" id="Environment_qui31"]
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_ct6u4"]
 
 [sub_resource type="Animation" id="Animation_21xvc"]
 resource_name = "Idle"
@@ -110,27 +109,40 @@ size = Vector3(50, 0, 50)
 material = ExtResource("1_eelvn")
 
 [node name="ClearCounter" parent="." instance=ExtResource("3_uhtyq")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 3.5)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 6, 0, 3.5)
 
 [node name="ClearCounter2" parent="." instance=ExtResource("3_uhtyq")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 4.5, 0, 3.5)
+
+[node name="ContainerCounterBread" parent="." instance=ExtResource("3_ru3vy")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 3, 0, 3.5)
+
+[node name="ClearCounter3" parent="." instance=ExtResource("3_uhtyq")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1.5, 0, 3.5)
 
-[node name="ContainerCounter" parent="." instance=ExtResource("4_3mvn6")]
+[node name="ClearCounter4" parent="." instance=ExtResource("3_uhtyq")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 3.5)
+
+[node name="ContainerCounterCheeseBlock" parent="." instance=ExtResource("4_jyrad")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -1.5, 0, 3.5)
-kitchenObjectResource = ExtResource("5_6w53t")
 
-[node name="ContainerCounter2" parent="." instance=ExtResource("4_3mvn6")]
+[node name="ClearCounter5" parent="." instance=ExtResource("3_uhtyq")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -3, 0, 3.5)
+
+[node name="ContainerCounterMeatPattyUncooked" parent="." instance=ExtResource("6_s2ewf")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -7.5, 0, 3.5)
+
+[node name="ClearCounter6" parent="." instance=ExtResource("3_uhtyq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -5)
+
+[node name="ContainerCounterCabbage" parent="." instance=ExtResource("6_djody")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, -5)
+
+[node name="ContainerCounterTomato" parent="." instance=ExtResource("6_urssm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5)
-kitchenObjectResource = ExtResource("6_xsknv")
 
-[node name="AnimationTree" parent="ContainerCounter2" index="1"]
-parameters/playback = SubResource("AnimationNodeStateMachinePlayback_ct6u4")
-
-[node name="SingleDoor" parent="ContainerCounter2/ContainerCounterVisual" index="3"]
-transform = Transform3D(-3.06167e-07, 5.61099e-06, -2.15882, 2.5686, -5.61098e-06, -2.57351e-07, -9.29831e-06, -1.55, -7.81491e-06, -0.2, -40.6, -129.4)
-
-[node name="Sprite3D" parent="ContainerCounter2/ContainerCounterVisual/SingleDoor" index="0"]
-texture = ExtResource("7_ewupi")
+[node name="ClearCounter7" parent="." instance=ExtResource("3_uhtyq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0, -5)
 
 [node name="Player" type="Node3D" parent="." node_paths=PackedStringArray("gameInput", "shapeCast", "kitchenObjectHoldPoint")]
 script = ExtResource("2_lunro")
@@ -160,7 +172,3 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3, 1)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_ru6ra")
 target_position = Vector3(0, 0, 0)
-
-[editable path="ContainerCounter2"]
-[editable path="ContainerCounter2/ContainerCounterVisual"]
-[editable path="ContainerCounter2/Selected"]

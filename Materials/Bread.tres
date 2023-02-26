@@ -1,0 +1,13 @@
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://ds5t5dm72ca4v"]
+
+[ext_resource type="Texture2D" uid="uid://bg6km8u6wwbee" path="res://Textures/BreadAlbedoTransparency.png" id="1_n86gq"]
+[ext_resource type="Texture2D" uid="uid://dgaybu5eym77t" path="res://Textures/BreadNormal.png" id="2_i548r"]
+
+[resource]
+resource_name = "Bread"
+cull_mode = 2
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1_n86gq")
+roughness = 0.552786
+normal_enabled = true
+normal_texture = ExtResource("2_i548r")

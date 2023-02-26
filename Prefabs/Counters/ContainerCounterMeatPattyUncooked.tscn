@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://b0yi0nywonr8r"]
+
+[ext_resource type="PackedScene" uid="uid://ycliix5lciak" path="res://Prefabs/Counters/ContainerCounter.tscn" id="1_uwvgc"]
+[ext_resource type="Resource" uid="uid://dive05muq5knu" path="res://Resources/KitchenObjects/MeatPattyUncooked.tres" id="2_a5vlq"]
+[ext_resource type="Texture2D" uid="uid://b1eh11cknvwrd" path="res://Textures/Icons/MeatPattyUncooked.png" id="3_4tm6y"]
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_xb735"]
+
+[node name="ContainerCounterMeatPattyUncooked" instance=ExtResource("1_uwvgc")]
+kitchenObjectResource = ExtResource("2_a5vlq")
+
+[node name="AnimationTree" parent="." index="1"]
+parameters/playback = SubResource("AnimationNodeStateMachinePlayback_xb735")
+
+[node name="SingleDoor" parent="ContainerCounterVisual" index="3"]
+transform = Transform3D(-3.06167e-07, 5.61099e-06, -2.15882, 2.5686, -5.61098e-06, -2.57351e-07, -9.29831e-06, -1.55, -7.81491e-06, -0.2, -40.6, -129.4)
+
+[node name="Sprite3D" parent="ContainerCounterVisual/SingleDoor" index="0"]
+texture = ExtResource("3_4tm6y")
+
+[editable path="ContainerCounterVisual"]
+[editable path="Selected"]

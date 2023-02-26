@@ -218,6 +218,12 @@ containerCounter = NodePath("..")
 
 [node name="ContainerCounterVisual" parent="." index="2" instance=ExtResource("2_84acs")]
 
+[node name="SingleDoor" parent="ContainerCounterVisual" index="3"]
+transform = Transform3D(-3.06167e-07, 5.61099e-06, -2.15882, 2.5686, -5.61098e-06, -2.57351e-07, -9.29831e-06, -1.55, -7.81491e-06, -0.2, -40.6, -129.4)
+
+[node name="Sprite3D" parent="ContainerCounterVisual/SingleDoor" index="0"]
+texture = null
+
 [node name="Selected" parent="." index="3" node_paths=PackedStringArray("baseCounter", "visualNode") instance=ExtResource("2_84acs")]
 transform = Transform3D(0.0101, 0, 0, 0, -4.41485e-10, -0.0101, 0, 0.0101, -4.41485e-10, 0, 0, 0)
 visible = false
@@ -240,5 +246,7 @@ mesh = SubResource("ArrayMesh_60gsv")
 
 [node name="Sprite3D" parent="Selected/SingleDoor" index="0"]
 visible = false
+texture = null
 
+[editable path="ContainerCounterVisual"]
 [editable path="Selected"]

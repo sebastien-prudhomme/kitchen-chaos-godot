@@ -1,0 +1,13 @@
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://db14pr0x16nqm"]
+
+[ext_resource type="Texture2D" uid="uid://bew3ntqv1iycf" path="res://Textures/LettuceAlbedoTransparency.png" id="1_oxdnj"]
+[ext_resource type="Texture2D" uid="uid://b4gtedjho61q2" path="res://Textures/LettuceNormal.png" id="2_83de6"]
+
+[resource]
+resource_name = "Cabbage"
+cull_mode = 2
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1_oxdnj")
+roughness = 0.552786
+normal_enabled = true
+normal_texture = ExtResource("2_83de6")

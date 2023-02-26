@@ -1,0 +1,13 @@
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://cf03wbtnjkqe3"]
+
+[ext_resource type="Texture2D" uid="uid://bvip6jousyqyq" path="res://Textures/MeatAlbedoTransparency.png" id="1_ji5mh"]
+[ext_resource type="Texture2D" uid="uid://dhrac8s7xudu" path="res://Textures/MeatNormal.png" id="2_yg8p3"]
+
+[resource]
+resource_name = "Meat"
+cull_mode = 2
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1_ji5mh")
+roughness = 0.552786
+normal_enabled = true
+normal_texture = ExtResource("2_yg8p3")

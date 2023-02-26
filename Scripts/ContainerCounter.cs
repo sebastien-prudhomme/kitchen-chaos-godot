@@ -7,9 +7,11 @@ public partial class ContainerCounter : BaseCounter {
     [Export] private KitchenObjectResource kitchenObjectResource;
 
     public override void Interact(Player player) {
-        KitchenObject kitchenObject = kitchenObjectResource.prefab.Instantiate<KitchenObject>();
-        kitchenObject.SetKitchenObjectParent(player);
+        if (!player.HasKitchenObject()) {
+            KitchenObject kitchenObject = kitchenObjectResource.prefab.Instantiate<KitchenObject>();
+            kitchenObject.SetKitchenObjectParent(player);
 
-        EmitSignal(SignalName.PlayerGrabbedObject);
+            EmitSignal(SignalName.PlayerGrabbedObject);
+        }
     }
 }
