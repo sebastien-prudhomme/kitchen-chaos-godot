@@ -10,6 +10,10 @@ public partial class BaseCounter : Node3D, IKitchenObjectParent {
         GD.PrintErr("BaseCounter.Interact()");
     }
 
+    public virtual void InteractAlternate(Player player) {
+        GD.PrintErr("BaseCounter.InteractAlternate()");
+    }
+
     public Node3D GetKitchenObjectFollowTransform() {
         return counterTopPoint;
     }

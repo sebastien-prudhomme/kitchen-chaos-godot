@@ -1,0 +1,10 @@
+[gd_resource type="Resource" load_steps=4 format=3 uid="uid://bleqopa6n5k8o"]
+
+[ext_resource type="Resource" uid="uid://cinjb6kjd1uy5" path="res://Resources/KitchenObjects/Tomato.tres" id="1_gseo8"]
+[ext_resource type="Resource" uid="uid://l7es8qdsxtmp" path="res://Resources/KitchenObjects/TomatoSlices.tres" id="2_ooaq5"]
+[ext_resource type="Script" path="res://Scripts/CuttingRecipeResource.cs" id="3_phn0u"]
+
+[resource]
+script = ExtResource("3_phn0u")
+input = ExtResource("1_gseo8")
+output = ExtResource("2_ooaq5")

@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://dtxewdtvuy5p8"]
+
+[ext_resource type="Script" path="res://Scripts/KitchenObject.cs" id="1_4j0x3"]
+[ext_resource type="PackedScene" uid="uid://cbq1b0xusno13" path="res://PrefabsVisual/KitchenObjectsVisuals/CabbageSlicedVisual.tscn" id="2_lyyew"]
+
+[node name="CabbageSlices" type="Node3D"]
+script = ExtResource("1_4j0x3")
+kitchenObjectResourcePath = "res://Resources/KitchenObjects/CabbageSlices.tres"
+
+[node name="CabbageSlicedVisual" parent="." instance=ExtResource("2_lyyew")]

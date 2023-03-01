@@ -27,11 +27,18 @@ public partial class Player : Node3D, IKitchenObjectParent {
 
     public override void _Ready() {
         gameInput.InteractActionPressed += OnInteractActionPressed;
+        gameInput.InteractAlternateActionPressed += OnInteractAlternateActionPressed;
     }
 
     private void OnInteractActionPressed() {
         if (selectedCounter != null) {
             selectedCounter.Interact(this);
+        }
+    }
+
+    private void OnInteractAlternateActionPressed() {
+        if (selectedCounter != null) {
+            selectedCounter.InteractAlternate(this);
         }
     }
 
@@ -96,7 +103,7 @@ public partial class Player : Node3D, IKitchenObjectParent {
                 shapeCast.TargetPosition = moveDirX * moveDistance;
                 shapeCast.ForceShapecastUpdate();
 
-                canMove = !shapeCast.IsColliding();
+                canMove = (moveDir.X != 0f) && !shapeCast.IsColliding();
 
                 if (canMove) {
                     moveDir = moveDirX;
@@ -105,7 +112,7 @@ public partial class Player : Node3D, IKitchenObjectParent {
                     shapeCast.TargetPosition = moveDirZ * moveDistance;
                     shapeCast.ForceShapecastUpdate();
 
-                    canMove = !shapeCast.IsColliding();
+                    canMove =  (moveDir.Z != 0f) && !shapeCast.IsColliding();
 
                     if (canMove) {
                         moveDir = moveDirZ;

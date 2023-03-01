@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://c8m1ny4u8hsos"]
+[gd_scene load_steps=25 format=3 uid="uid://c8m1ny4u8hsos"]
 
 [ext_resource type="Script" path="res://Scripts/GameInput.cs" id="1_b0oex"]
 [ext_resource type="Material" uid="uid://cll20ha4go06l" path="res://Materials/Floor.tres" id="1_eelvn"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://sv1535r1aeon" path="res://PrefabsVisual/PlayerVisual.tscn" id="6_g53ns"]
 [ext_resource type="PackedScene" uid="uid://b0yi0nywonr8r" path="res://Prefabs/Counters/ContainerCounterMeatPattyUncooked.tscn" id="6_s2ewf"]
 [ext_resource type="PackedScene" uid="uid://cpf0t3dt4b8h6" path="res://Prefabs/Counters/ContainerCounterTomato.tscn" id="6_urssm"]
+[ext_resource type="PackedScene" uid="uid://b8pp018u3yse" path="res://Prefabs/Counters/CuttingCounter.tscn" id="12_136gd"]
 
 [sub_resource type="Environment" id="Environment_qui31"]
 
@@ -128,6 +129,9 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -1.5, 
 
 [node name="ClearCounter5" parent="." instance=ExtResource("3_uhtyq")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -3, 0, 3.5)
+
+[node name="CuttingCounter" parent="." instance=ExtResource("12_136gd")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -4.5, 0, 3.5)
 
 [node name="ContainerCounterMeatPattyUncooked" parent="." instance=ExtResource("6_s2ewf")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -7.5, 0, 3.5)

@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://dt6tkxj8c87iu"]
+
+[ext_resource type="Script" path="res://Scripts/KitchenObject.cs" id="1_87wmh"]
+[ext_resource type="PackedScene" uid="uid://ck8urlbcbibc0" path="res://PrefabsVisual/KitchenObjectsVisuals/CheeseSlicesVisual.tscn" id="2_sykgd"]
+
+[node name="CheeseSlices" type="Node3D"]
+script = ExtResource("1_87wmh")
+kitchenObjectResourcePath = "res://Resources/KitchenObjects/CheeseSlices.tres"
+
+[node name="CheeseSlicesVisual" parent="." instance=ExtResource("2_sykgd")]

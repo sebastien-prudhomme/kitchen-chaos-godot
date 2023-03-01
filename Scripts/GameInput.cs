@@ -3,11 +3,16 @@ using System;
 
 public partial class GameInput : Node {
     [Signal] public delegate void InteractActionPressedEventHandler();
+    [Signal] public delegate void InteractAlternateActionPressedEventHandler();
 
 	public override void _Input(InputEvent inputEvent)
 	{
 	    if (inputEvent.IsActionPressed("interact")) {
             EmitSignal(SignalName.InteractActionPressed);
+		}
+
+	    if (inputEvent.IsActionPressed("interact_alternate")) {
+            EmitSignal(SignalName.InteractAlternateActionPressed);
 		}
 	}
 

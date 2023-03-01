@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3]
+[gd_scene load_steps=3 format=3 uid="uid://cdn8a2hmehfj"]
 
 [ext_resource type="Script" path="res://Scripts/KitchenObject.cs" id="1_q4gjp"]
 [ext_resource type="PackedScene" uid="uid://drt80485hr3g5" path="res://PrefabsVisual/KitchenObjectsVisuals/BreadVisual.tscn" id="2_3cili"]

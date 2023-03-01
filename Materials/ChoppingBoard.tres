@@ -1,0 +1,13 @@
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://xetaut7qyf4s"]
+
+[ext_resource type="Texture2D" uid="uid://b87odlf7a7plx" path="res://Textures/ChoppingBoardAlbedoTransparency.png" id="1_ip8ea"]
+[ext_resource type="Texture2D" uid="uid://b4oxhoaynlulw" path="res://Textures/ChoppingBoardNormal.png" id="2_mem82"]
+
+[resource]
+resource_name = "Chopping_board"
+cull_mode = 2
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1_ip8ea")
+roughness = 0.552786
+normal_enabled = true
+normal_texture = ExtResource("2_mem82")

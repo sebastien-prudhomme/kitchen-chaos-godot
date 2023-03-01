@@ -31,4 +31,19 @@ public partial class KitchenObject : Node {
 
         this.kitchenObjectParent.GetKitchenObjectFollowTransform().AddChild(this);
     }
+
+    public void DestroySelf() {
+        if (kitchenObjectParent != null) {
+            kitchenObjectParent.ClearKitchenObject();
+        }
+
+        QueueFree();
+    }
+
+    public static KitchenObject SpawnKitchenObject(KitchenObjectResource kitchenObjectResource, IKitchenObjectParent kitchenObjectParent) {
+        KitchenObject kitchenObject = kitchenObjectResource.prefab.Instantiate<KitchenObject>();
+        kitchenObject.SetKitchenObjectParent(kitchenObjectParent);
+
+        return kitchenObject;
+    }
 }
