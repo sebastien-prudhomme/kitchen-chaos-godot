@@ -2,13 +2,22 @@ using Godot;
 using System;
 
 public partial class CuttingCounter : BaseCounter {
+    [Signal] public delegate void CutEventHandler();
+    [Signal] public delegate void ProgressChangedEventHandler(float progressNormalized);
+
     [Export] private CuttingRecipeResource[] cuttingRecipeResourceArray;
+
+    private int cuttingProgress;
 
     public override void Interact(Player player) {
         if (!HasKitchenObject()) {
             if (player.HasKitchenObject()) {
                 if (HasRecipeWithInput(player.GetKitchenObject().GetKitchenObjectResource())) {
                     player.GetKitchenObject().SetKitchenObjectParent(this);
+
+                    cuttingProgress = 0;
+
+                    EmitSignal(SignalName.ProgressChanged, 0f);
                 }
             }
         } else {
@@ -20,28 +29,48 @@ public partial class CuttingCounter : BaseCounter {
 
     public override void InteractAlternate(Player player) {
         if (HasKitchenObject() && HasRecipeWithInput(GetKitchenObject().GetKitchenObjectResource())) {
-            KitchenObjectResource outputKitchenObjectResource = GetOutputForInput(GetKitchenObject().GetKitchenObjectResource());
+            EmitSignal(SignalName.Cut);
 
-            GetKitchenObject().DestroySelf();
+            cuttingProgress++;
 
-            KitchenObject.SpawnKitchenObject(outputKitchenObjectResource, this);
+            CuttingRecipeResource cuttingRecipeResource = GetCuttingRecipeResourceWithInput(GetKitchenObject().GetKitchenObjectResource());
+
+            EmitSignal(SignalName.ProgressChanged,(float)cuttingProgress / cuttingRecipeResource.cuttingProgressMax);
+
+            if (cuttingProgress >= cuttingRecipeResource.cuttingProgressMax) {
+                KitchenObjectResource outputKitchenObjectResource = GetOutputForInput(GetKitchenObject().GetKitchenObjectResource());
+
+                GetKitchenObject().DestroySelf();
+
+                KitchenObject.SpawnKitchenObject(outputKitchenObjectResource, this);
+            }
         }
     }
 
     private bool HasRecipeWithInput(KitchenObjectResource inputKitchenObjectResource) {
-        foreach (CuttingRecipeResource cuttingRecipeResource in cuttingRecipeResourceArray) {
-            if  (cuttingRecipeResource.input == inputKitchenObjectResource) {
+        CuttingRecipeResource cuttingRecipeResource = GetCuttingRecipeResourceWithInput(inputKitchenObjectResource);
+
+        if (cuttingRecipeResource != null) {
                 return true;
-            }
         }
 
         return false;
     }
 
     private KitchenObjectResource GetOutputForInput(KitchenObjectResource inputKitchenObjectResource) {
+        CuttingRecipeResource cuttingRecipeResource = GetCuttingRecipeResourceWithInput(inputKitchenObjectResource);
+
+        if (cuttingRecipeResource != null) {
+                return cuttingRecipeResource.output;
+        }
+
+        return null;
+    }
+
+    private CuttingRecipeResource GetCuttingRecipeResourceWithInput(KitchenObjectResource inputKitchenObjectResource) {
         foreach (CuttingRecipeResource cuttingRecipeResource in cuttingRecipeResourceArray) {
             if  (cuttingRecipeResource.input == inputKitchenObjectResource) {
-                return cuttingRecipeResource.output;
+                return cuttingRecipeResource;
             }
         }
 
