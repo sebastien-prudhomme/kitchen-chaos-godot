@@ -10,36 +10,7 @@
 [ext_resource type="Resource" uid="uid://bleqopa6n5k8o" path="res://Resources/CuttingRecipes/Tomato-TomatoSlices.tres" id="5_xnswo"]
 [ext_resource type="Script" path="res://Scripts/CuttingCounterAnimationTree.cs" id="6_3lavh"]
 
-[sub_resource type="Animation" id="Animation_unk1g"]
-resource_name = "CuttingCounterIdle"
-length = 0.001
-step = 0.0166667
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("CuttingCounterVisual/Knife:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(-32.7, 50.3, -128.4)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("CuttingCounterVisual/Knife:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 1.5708)]
-}
-
-[sub_resource type="Animation" id="Animation_cnsk7"]
+[sub_resource type="Animation" id="Animation_rj4pk"]
 resource_name = "CuttingCounterCut"
 length = 0.200002
 step = 0.0166667
@@ -68,35 +39,64 @@ tracks/1/keys = {
 "values": [Vector3(-0.657989, 1.5708, 0.706858), Vector3(-0.657989, 1.5708, -0.191986), Vector3(-0.657989, 1.5708, -0.191986)]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_7mvqu"]
-_data = {
-"CuttingCounterCut": SubResource("Animation_cnsk7"),
-"CuttingCounterIdle": SubResource("Animation_unk1g")
+[sub_resource type="Animation" id="Animation_03fru"]
+resource_name = "CuttingCounterIdle"
+length = 0.001
+step = 0.0166667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CuttingCounterVisual/Knife:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-32.7, 50.3, -128.4)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CuttingCounterVisual/Knife:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 1.5708)]
 }
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_m4n12"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_53rr8"]
+_data = {
+"CuttingCounterCut": SubResource("Animation_rj4pk"),
+"CuttingCounterIdle": SubResource("Animation_03fru")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_88qp7"]
 animation = &"CuttingCounterCut"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_3ms03"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_w4bpw"]
 animation = &"CuttingCounterIdle"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_1ktjr"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_gq5yk"]
 advance_mode = 2
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_e48qw"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_i0vn5"]
 advance_mode = 0
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_f1jrp"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_lg2ob"]
 switch_mode = 2
 advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_ffg2f"]
-states/CuttingCounterCut/node = SubResource("AnimationNodeAnimation_m4n12")
-states/CuttingCounterCut/position = Vector2(664, 100)
-states/CuttingCounterIdle/node = SubResource("AnimationNodeAnimation_3ms03")
-states/CuttingCounterIdle/position = Vector2(398, 100)
+states/CuttingCounterCut/node = SubResource("AnimationNodeAnimation_88qp7")
+states/CuttingCounterCut/position = Vector2(668, 100)
+states/CuttingCounterIdle/node = SubResource("AnimationNodeAnimation_w4bpw")
+states/CuttingCounterIdle/position = Vector2(403, 100)
 states/Start/position = Vector2(190, 100)
-transitions = ["Start", "CuttingCounterIdle", SubResource("AnimationNodeStateMachineTransition_1ktjr"), "CuttingCounterIdle", "CuttingCounterCut", SubResource("AnimationNodeStateMachineTransition_e48qw"), "CuttingCounterCut", "CuttingCounterIdle", SubResource("AnimationNodeStateMachineTransition_f1jrp")]
+transitions = ["Start", "CuttingCounterIdle", SubResource("AnimationNodeStateMachineTransition_gq5yk"), "CuttingCounterIdle", "CuttingCounterCut", SubResource("AnimationNodeStateMachineTransition_i0vn5"), "CuttingCounterCut", "CuttingCounterIdle", SubResource("AnimationNodeStateMachineTransition_lg2ob")]
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_bqyn2"]
 
@@ -203,7 +203,7 @@ counterTopPoint = NodePath("CounterTopPoint")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="0"]
 libraries = {
-"": SubResource("AnimationLibrary_7mvqu")
+"": SubResource("AnimationLibrary_53rr8")
 }
 
 [node name="AnimationTree" type="AnimationTree" parent="." index="1" node_paths=PackedStringArray("cuttingCounter")]
@@ -217,7 +217,7 @@ cuttingCounter = NodePath("..")
 [node name="CuttingCounterVisual" parent="." index="2" instance=ExtResource("2_64epq")]
 
 [node name="Knife" parent="CuttingCounterVisual" index="2"]
-transform = Transform3D(1.78353e-06, -1.96, 0, 1.96, 1.78353e-06, 0, 0, 0, 1.96, -32.7, 50.3, -128.4)
+transform = Transform3D(-7.09517e-06, -1.96, 0, 1.96, -7.09519e-06, 0, 0, 0, 1.96, -32.7, 50.3, -128.4)
 
 [node name="Selected" parent="." index="3" node_paths=PackedStringArray("baseCounter", "visualNode") instance=ExtResource("2_64epq")]
 transform = Transform3D(0.0101, 0, 0, 0, -4.41485e-10, -0.0101, 0, 0.0101, -4.41485e-10, 0, 0, 0)
