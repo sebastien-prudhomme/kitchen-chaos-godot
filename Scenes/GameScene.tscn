@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://sv1535r1aeon" path="res://PrefabsVisual/PlayerVisual.tscn" id="6_g53ns"]
 [ext_resource type="PackedScene" uid="uid://b0yi0nywonr8r" path="res://Prefabs/Counters/ContainerCounterMeatPattyUncooked.tscn" id="6_s2ewf"]
 [ext_resource type="PackedScene" uid="uid://cpf0t3dt4b8h6" path="res://Prefabs/Counters/ContainerCounterTomato.tscn" id="6_urssm"]
-[ext_resource type="PackedScene" uid="uid://b8pp018u3yse" path="res://Prefabs/Counters/CuttingCounter.tscn" id="12_136gd"]
+[ext_resource type="PackedScene" uid="uid://dct3i16a3vkif" path="res://Prefabs/Counters/CuttingCounter.tscn" id="12_136gd"]
 
 [sub_resource type="Environment" id="Environment_qui31"]
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://dct3i16a3vkif"]
+[gd_scene load_steps=32 format=3 uid="uid://dct3i16a3vkif"]
 
 [ext_resource type="PackedScene" uid="uid://dh4kb45g8jd5b" path="res://Prefabs/Counters/BaseCounter.tscn" id="1_srnnt"]
 [ext_resource type="PackedScene" uid="uid://chf8apn553c7n" path="res://PrefabsVisual/KitchenObjectsVisuals/CuttingCounterVisual.tscn" id="2_64epq"]
@@ -9,6 +9,7 @@
 [ext_resource type="Resource" uid="uid://c5l2qst6ontbc" path="res://Resources/CuttingRecipes/CheeseBlock-CheeseSlices.tres" id="4_tr0ct"]
 [ext_resource type="Resource" uid="uid://bleqopa6n5k8o" path="res://Resources/CuttingRecipes/Tomato-TomatoSlices.tres" id="5_xnswo"]
 [ext_resource type="Script" path="res://Scripts/CuttingCounterAnimationTree.cs" id="6_3lavh"]
+[ext_resource type="Script" path="res://Scripts/ProgressBarUI.cs" id="10_t782d"]
 
 [sub_resource type="Animation" id="Animation_rj4pk"]
 resource_name = "CuttingCounterCut"
@@ -196,6 +197,33 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_rbkpc")
 
+[sub_resource type="QuadMesh" id="QuadMesh_grh2c"]
+size = Vector2(1.1, 0.3)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_s5je7"]
+viewport_path = NodePath("ProgressBarUI/SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ejgs7"]
+resource_local_to_scene = true
+transparency = 1
+shading_mode = 0
+albedo_texture = SubResource("ViewportTexture_s5je7")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_02sps"]
+bg_color = Color(0.301961, 0.301961, 0.301961, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0, 0, 0, 1)
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nfntb"]
+bg_color = Color(1, 0.807843, 0, 1)
+
 [node name="CuttingCounter" node_paths=PackedStringArray("counterTopPoint") instance=ExtResource("1_srnnt")]
 script = ExtResource("2_ou14n")
 cuttingRecipeResourceArray = Array[Resource]([ExtResource("3_n3r3u"), ExtResource("4_tr0ct"), ExtResource("5_xnswo")])
@@ -217,7 +245,7 @@ cuttingCounter = NodePath("..")
 [node name="CuttingCounterVisual" parent="." index="2" instance=ExtResource("2_64epq")]
 
 [node name="Knife" parent="CuttingCounterVisual" index="2"]
-transform = Transform3D(-7.09517e-06, -1.96, 0, 1.96, -7.09519e-06, 0, 0, 0, 1.96, -32.7, 50.3, -128.4)
+transform = Transform3D(-7.09518e-06, -1.96, 0, 1.96, -7.09518e-06, 0, 0, 0, 1.96, -32.7, 50.3, -128.4)
 
 [node name="Selected" parent="." index="3" node_paths=PackedStringArray("baseCounter", "visualNode") instance=ExtResource("2_64epq")]
 transform = Transform3D(0.0101, 0, 0, 0, -4.41485e-10, -0.0101, 0, 0.0101, -4.41485e-10, 0, 0, 0)
@@ -234,6 +262,27 @@ mesh = SubResource("ArrayMesh_j74q7")
 
 [node name="Knife" parent="Selected" index="2"]
 mesh = SubResource("ArrayMesh_jbutu")
+
+[node name="ProgressBarUI" type="MeshInstance3D" parent="." index="6" node_paths=PackedStringArray("cuttingCounter", "progressBar")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+mesh = SubResource("QuadMesh_grh2c")
+surface_material_override/0 = SubResource("StandardMaterial3D_ejgs7")
+script = ExtResource("10_t782d")
+cuttingCounter = NodePath("..")
+progressBar = NodePath("SubViewport/ProgressBar")
+
+[node name="SubViewport" type="SubViewport" parent="ProgressBarUI" index="0"]
+size = Vector2i(110, 30)
+
+[node name="ProgressBar" type="ProgressBar" parent="ProgressBarUI/SubViewport" index="0"]
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 105.0
+offset_bottom = 25.0
+theme_override_styles/background = SubResource("StyleBoxFlat_02sps")
+theme_override_styles/fill = SubResource("StyleBoxFlat_nfntb")
+value = 50.0
+show_percentage = false
 
 [editable path="CuttingCounterVisual"]
 [editable path="Selected"]
