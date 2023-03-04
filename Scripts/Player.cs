@@ -121,11 +121,11 @@ public partial class Player : Node3D, IKitchenObjectParent {
             }
 
             if (canMove) {
-                Position += moveDir * moveDistance;
+                GlobalPosition += moveDir * moveDistance;
             }
 
             float rotateSpeed = 10f;
-            LookAt(Position - Basis.Z.Slerp(moveDir, (float)delta * rotateSpeed));
+            LookAt(GlobalPosition - GlobalTransform.Basis.Z.Slerp(moveDir, (float)delta * rotateSpeed));
 
             isWalking = true;
         } else {

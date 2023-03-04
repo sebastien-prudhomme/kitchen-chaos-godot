@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://dct3i16a3vkif"]
+[gd_scene load_steps=33 format=3 uid="uid://dct3i16a3vkif"]
 
 [ext_resource type="PackedScene" uid="uid://dh4kb45g8jd5b" path="res://Prefabs/Counters/BaseCounter.tscn" id="1_srnnt"]
 [ext_resource type="PackedScene" uid="uid://chf8apn553c7n" path="res://PrefabsVisual/KitchenObjectsVisuals/CuttingCounterVisual.tscn" id="2_64epq"]
@@ -9,6 +9,7 @@
 [ext_resource type="Resource" uid="uid://c5l2qst6ontbc" path="res://Resources/CuttingRecipes/CheeseBlock-CheeseSlices.tres" id="4_tr0ct"]
 [ext_resource type="Resource" uid="uid://bleqopa6n5k8o" path="res://Resources/CuttingRecipes/Tomato-TomatoSlices.tres" id="5_xnswo"]
 [ext_resource type="Script" path="res://Scripts/CuttingCounterAnimationTree.cs" id="6_3lavh"]
+[ext_resource type="Script" path="res://Scripts/LookAtCamera.cs" id="10_46xol"]
 [ext_resource type="Script" path="res://Scripts/ProgressBarUI.cs" id="10_t782d"]
 
 [sub_resource type="Animation" id="Animation_rj4pk"]
@@ -201,11 +202,12 @@ shadow_mesh = SubResource("ArrayMesh_rbkpc")
 size = Vector2(1.1, 0.3)
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_s5je7"]
-viewport_path = NodePath("ProgressBarUI/SubViewport")
+viewport_path = NodePath("LooktAtCamera/ProgressBarUI/SubViewport")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ejgs7"]
 resource_local_to_scene = true
 transparency = 1
+cull_mode = 2
 shading_mode = 0
 albedo_texture = SubResource("ViewportTexture_s5je7")
 
@@ -263,18 +265,23 @@ mesh = SubResource("ArrayMesh_j74q7")
 [node name="Knife" parent="Selected" index="2"]
 mesh = SubResource("ArrayMesh_jbutu")
 
-[node name="ProgressBarUI" type="MeshInstance3D" parent="." index="6" node_paths=PackedStringArray("cuttingCounter", "progressBar")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+[node name="LooktAtCamera" type="Node3D" parent="." index="6"]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 2.5, 0)
+script = ExtResource("10_46xol")
+
+[node name="ProgressBarUI" type="MeshInstance3D" parent="LooktAtCamera" index="0" node_paths=PackedStringArray("cuttingCounter", "progressBar")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 mesh = SubResource("QuadMesh_grh2c")
+skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_ejgs7")
 script = ExtResource("10_t782d")
-cuttingCounter = NodePath("..")
+cuttingCounter = NodePath("../..")
 progressBar = NodePath("SubViewport/ProgressBar")
 
-[node name="SubViewport" type="SubViewport" parent="ProgressBarUI" index="0"]
+[node name="SubViewport" type="SubViewport" parent="LooktAtCamera/ProgressBarUI" index="0"]
 size = Vector2i(110, 30)
 
-[node name="ProgressBar" type="ProgressBar" parent="ProgressBarUI/SubViewport" index="0"]
+[node name="ProgressBar" type="ProgressBar" parent="LooktAtCamera/ProgressBarUI/SubViewport" index="0"]
 offset_left = 5.0
 offset_top = 5.0
 offset_right = 105.0
