@@ -38,11 +38,9 @@ public partial class CuttingCounter : BaseCounter {
             EmitSignal(SignalName.ProgressChanged,(float)cuttingProgress / cuttingRecipeResource.cuttingProgressMax);
 
             if (cuttingProgress >= cuttingRecipeResource.cuttingProgressMax) {
-                KitchenObjectResource outputKitchenObjectResource = GetOutputForInput(GetKitchenObject().GetKitchenObjectResource());
-
                 GetKitchenObject().DestroySelf();
 
-                KitchenObject.SpawnKitchenObject(outputKitchenObjectResource, this);
+                KitchenObject.SpawnKitchenObject(cuttingRecipeResource.output, this);
             }
         }
     }

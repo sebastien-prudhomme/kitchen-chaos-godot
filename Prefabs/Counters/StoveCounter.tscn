@@ -1,9 +1,10 @@
-[gd_scene load_steps=15 format=3 uid="uid://dtuokh0arl2oq"]
+[gd_scene load_steps=16 format=3 uid="uid://dtuokh0arl2oq"]
 
 [ext_resource type="PackedScene" uid="uid://dh4kb45g8jd5b" path="res://Prefabs/Counters/BaseCounter.tscn" id="1_7glur"]
 [ext_resource type="PackedScene" uid="uid://bnelmse5y0f01" path="res://PrefabsVisual/CountersVisuals/StoveCounterVisual.tscn" id="2_r0lej"]
 [ext_resource type="Script" path="res://Scripts/Counters/StoveCounter.cs" id="2_v6l3d"]
-[ext_resource type="Resource" path="res://Resources/FryingRecipes/MeatPattyUncooked-MeatPattyCooked.tres" id="3_ncpm4"]
+[ext_resource type="Resource" uid="uid://cesmgsp2tqaug" path="res://Resources/FryingRecipes/MeatPattyUncooked-MeatPattyCooked.tres" id="3_ncpm4"]
+[ext_resource type="Resource" uid="uid://cfwrwoq8fyj3t" path="res://Resources/BurningRecipes/MeatPattyCooked-MeatPattyBurned.tres" id="4_0sx8e"]
 [ext_resource type="Script" path="res://Scripts/Counters/SelectedCounterVisual.cs" id="4_u2g4x"]
 [ext_resource type="Material" uid="uid://cgi0binfje14a" path="res://Materials/CounterSelected.tres" id="5_mckuc"]
 
@@ -136,6 +137,7 @@ shadow_mesh = SubResource("ArrayMesh_y114n")
 [node name="StoveCounter" node_paths=PackedStringArray("counterTopPoint") instance=ExtResource("1_7glur")]
 script = ExtResource("2_v6l3d")
 fryingRecipeResourceArray = Array[Resource]([ExtResource("3_ncpm4")])
+burningRecipeResourceArray = Array[Resource]([ExtResource("4_0sx8e")])
 counterTopPoint = NodePath("CounterTopPoint")
 
 [node name="StoveCounterVisual" parent="." index="0" instance=ExtResource("2_r0lej")]
