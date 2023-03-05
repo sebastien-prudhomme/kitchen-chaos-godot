@@ -1,7 +1,7 @@
-[gd_resource type="Resource" load_steps=4 format=3 uid="uid://ctexynvt3uvhy"]
+[gd_resource type="Resource" load_steps=4 format=3]
 
 [ext_resource type="PackedScene" uid="uid://dt6tkxj8c87iu" path="res://Prefabs/KitchenObjects/CheeseSlices.tscn" id="1_gdoh1"]
-[ext_resource type="Script" path="res://Scripts/KitchenObjectResource.cs" id="2_0n1sv"]
+[ext_resource type="Script" path="res://Scripts/Resources/KitchenObjectResource.cs" id="2_0n1sv"]
 [ext_resource type="Texture2D" uid="uid://cjj40iq4rcc23" path="res://Textures/Icons/CheeseSlice.png" id="3_58v2u"]
 
 [resource]

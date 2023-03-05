@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://br6pkq8vtg0b6"]
+
+[ext_resource type="Script" path="res://Scripts/KitchenObject.cs" id="1_kwhxe"]
+[ext_resource type="PackedScene" uid="uid://cmfj7174da36v" path="res://PrefabsVisual/KitchenObjectsVisuals/MeatPattyCookedVisual.tscn" id="3_sbw8l"]
+
+[node name="MeatPattyCooked" type="Node3D"]
+script = ExtResource("1_kwhxe")
+kitchenObjectResourcePath = "res://Resources/KitchenObjects/MeatPattyCooked.tres"
+
+[node name="MeatPattyCookedVisual" parent="." instance=ExtResource("3_sbw8l")]

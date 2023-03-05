@@ -1,0 +1,13 @@
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://27bk8e2cljnf"]
+
+[ext_resource type="Texture2D" uid="uid://6xsmi0wfi8f7" path="res://Textures/FryingPanAlbedoTransparency.png" id="1_8tm5k"]
+[ext_resource type="Texture2D" uid="uid://uvt8w7ybqu45" path="res://Textures/FryingPanNormal.png" id="2_avuny"]
+
+[resource]
+resource_name = "Frying_pan"
+cull_mode = 2
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1_8tm5k")
+roughness = 0.552786
+normal_enabled = true
+normal_texture = ExtResource("2_avuny")

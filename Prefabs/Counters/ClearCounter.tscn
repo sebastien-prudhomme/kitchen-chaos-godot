@@ -1,9 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://cg067fwf3q3ip"]
+[gd_scene load_steps=8 format=3]
 
-[ext_resource type="Script" path="res://Scripts/ClearCounter.cs" id="1_j2kx3"]
+[ext_resource type="Script" path="res://Scripts/Counters/ClearCounter.cs" id="1_j2kx3"]
 [ext_resource type="PackedScene" uid="uid://dh4kb45g8jd5b" path="res://Prefabs/Counters/BaseCounter.tscn" id="1_xkmoe"]
 [ext_resource type="PackedScene" uid="uid://v8bvmh2rfbjw" path="res://PrefabsVisual/CountersVisuals/ClearCounterVisual.tscn" id="2_10l08"]
-[ext_resource type="Script" path="res://Scripts/SelectedCounterVisual.cs" id="3_w7yvd"]
+[ext_resource type="Script" path="res://Scripts/Counters/SelectedCounterVisual.cs" id="3_w7yvd"]
 [ext_resource type="Material" uid="uid://cgi0binfje14a" path="res://Materials/CounterSelected.tres" id="5_bdaj0"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_fml7d"]
@@ -46,12 +46,12 @@ counterTopPoint = NodePath("CounterTopPoint")
 
 [node name="Selected" parent="." index="1" node_paths=PackedStringArray("baseCounter", "visualNode") instance=ExtResource("2_10l08")]
 transform = Transform3D(0.0101, 0, 0, 0, -4.41485e-10, -0.0101, 0, 0.0101, -4.41485e-10, 0, 0, 0)
+visible = false
 script = ExtResource("3_w7yvd")
 baseCounter = NodePath("..")
-visualNode = NodePath("KitchenCounter")
+visualNode = NodePath(".")
 
 [node name="KitchenCounter" parent="Selected" index="0"]
-visible = false
 mesh = SubResource("ArrayMesh_xcuwb")
 
 [editable path="Selected"]

@@ -1,0 +1,13 @@
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://bjkjbubtpxkdx"]
+
+[ext_resource type="Texture2D" uid="uid://ccepd0sj70k3n" path="res://Textures/StoveAlbedoTransparency.png" id="1_x4iuh"]
+[ext_resource type="Texture2D" uid="uid://c8hw3k5kbcynx" path="res://Textures/StoveNormal.png" id="2_ggmlx"]
+
+[resource]
+resource_name = "Stove"
+cull_mode = 2
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1_x4iuh")
+roughness = 0.552786
+normal_enabled = true
+normal_texture = ExtResource("2_ggmlx")

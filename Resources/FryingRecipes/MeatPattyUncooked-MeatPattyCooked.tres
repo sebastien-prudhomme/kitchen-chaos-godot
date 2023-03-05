@@ -1,0 +1,11 @@
+[gd_resource type="Resource" load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://Scripts/Resources/FryingRecipeResource.cs" id="1_c3kxo"]
+[ext_resource type="Resource" uid="uid://dive05muq5knu" path="res://Resources/KitchenObjects/MeatPattyUncooked.tres" id="1_wg8yq"]
+[ext_resource type="Resource" uid="uid://5op103rg3lfg" path="res://Resources/KitchenObjects/MeatPattyCooked.tres" id="2_5kx6i"]
+
+[resource]
+script = ExtResource("1_c3kxo")
+input = ExtResource("1_wg8yq")
+output = ExtResource("2_5kx6i")
+fryingTimerMax = 0.0

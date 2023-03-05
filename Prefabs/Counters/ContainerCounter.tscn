@@ -1,10 +1,10 @@
-[gd_scene load_steps=25 format=3 uid="uid://ycliix5lciak"]
+[gd_scene load_steps=25 format=3]
 
 [ext_resource type="PackedScene" uid="uid://dh4kb45g8jd5b" path="res://Prefabs/Counters/BaseCounter.tscn" id="1_5ou0c"]
 [ext_resource type="PackedScene" uid="uid://6s6xpft8a1kj" path="res://PrefabsVisual/CountersVisuals/ContainerCounterVisual.tscn" id="2_84acs"]
-[ext_resource type="Script" path="res://Scripts/ContainerCounter.cs" id="2_cqauc"]
-[ext_resource type="Script" path="res://Scripts/ContainerCounterAnimationTree.cs" id="3_c7dey"]
-[ext_resource type="Script" path="res://Scripts/SelectedCounterVisual.cs" id="4_jwfgt"]
+[ext_resource type="Script" path="res://Scripts/Counters/ContainerCounter.cs" id="2_cqauc"]
+[ext_resource type="Script" path="res://Scripts/Counters/ContainerCounterAnimationTree.cs" id="3_c7dey"]
+[ext_resource type="Script" path="res://Scripts/Counters/SelectedCounterVisual.cs" id="4_jwfgt"]
 [ext_resource type="Material" uid="uid://cgi0binfje14a" path="res://Materials/CounterSelected.tres" id="5_fch5c"]
 
 [sub_resource type="Animation" id="Animation_unk1g"]
