@@ -1,9 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://bnelmse5y0f01"]
+[gd_scene load_steps=18 format=3 uid="uid://bnelmse5y0f01"]
 
 [ext_resource type="Material" uid="uid://cwf45piegxxxu" path="res://Materials/KitchenCounter.tres" id="1_n82s8"]
 [ext_resource type="Material" uid="uid://27bk8e2cljnf" path="res://Materials/FryingPan.tres" id="2_psv2e"]
 [ext_resource type="Material" uid="uid://bjkjbubtpxkdx" path="res://Materials/Stove.tres" id="3_awcbs"]
 [ext_resource type="Material" uid="uid://ctvhv4rmne204" path="res://Materials/StoveRedGlow.tres" id="4_tykjr"]
+[ext_resource type="Material" uid="uid://e0wesp3gqjxe" path="res://Materials/SizzlingParticles.tres" id="4_yp05u"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_eojlm"]
 _surfaces = [{
@@ -101,6 +102,32 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_x1ldd")
 
+[sub_resource type="Curve" id="Curve_11awr"]
+_data = [Vector2(0, 1), 0.0, -2.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_2wt0g"]
+curve = SubResource("Curve_11awr")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_3d8ec"]
+emission_shape = 6
+emission_ring_axis = Vector3(0, 1, 0)
+emission_ring_height = 0.0
+emission_ring_radius = 35.0
+emission_ring_inner_radius = 17.5
+direction = Vector3(0, 1, 0)
+spread = 25.0
+initial_velocity_min = 200.0
+initial_velocity_max = 200.0
+angular_velocity_min = -720.0
+angular_velocity_max = 720.0
+angle_max = 360.0
+scale_curve = SubResource("CurveTexture_2wt0g")
+
+[sub_resource type="QuadMesh" id="QuadMesh_oc73g"]
+material = ExtResource("4_yp05u")
+size = Vector2(0.15, 0.15)
+
 [sub_resource type="ArrayMesh" id="ArrayMesh_y114n"]
 _surfaces = [{
 "aabb": AABB(-50, -3.06162e-15, -50, 100, 1e-05, 100),
@@ -149,9 +176,13 @@ transform = Transform3D(1.3793, 1.44828, 0, -1.44828, 1.3793, 0, 0, 0, 2, -4.8, 
 mesh = SubResource("ArrayMesh_inlh5")
 skeleton = NodePath("")
 
-[node name="SizzlingParticles" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, -4.7, -1.8, -143.2)
+[node name="SizzlingParticles" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -4.7, -1.8, -143.2)
 visible = false
+amount = 20
+lifetime = 0.7
+process_material = SubResource("ParticleProcessMaterial_3d8ec")
+draw_pass_1 = SubResource("QuadMesh_oc73g")
 
 [node name="StoveOnVisual" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.828344, 0, 0, 0, 0, -0.915266, 0, 1, 0, -4.7, -3.9, -139.5)

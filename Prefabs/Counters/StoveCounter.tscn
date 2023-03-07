@@ -158,7 +158,7 @@ mesh = SubResource("ArrayMesh_gk4yl")
 [node name="FryingPan" parent="Selected" index="2"]
 mesh = SubResource("ArrayMesh_cs2e3")
 
-[node name="StoveOnVisual" parent="Selected" index="4"]
+[node name="StoveOnVisual" parent="Selected" index="5"]
 mesh = SubResource("ArrayMesh_cb2su")
 
 [node name="CounterTopPoint" parent="." index="3"]
