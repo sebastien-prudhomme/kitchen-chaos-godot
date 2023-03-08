@@ -2,10 +2,13 @@ using Godot;
 using System;
 
 public partial class StoveCounter : BaseCounter {
+    [Signal] public delegate void ProgressChangedEventHandler(float progressNormalized);
+    [Signal] public delegate void StateChangedEventHandler(State state);
+
     [Export] private FryingRecipeResource[] fryingRecipeResourceArray;
     [Export] private BurningRecipeResource[] burningRecipeResourceArray;
 
-    private enum State {
+    public enum State {
         Idle,
         Frying,
         Fried,
@@ -30,6 +33,8 @@ public partial class StoveCounter : BaseCounter {
                 case State.Frying:
                     fryingTimer += (float)delta;
 
+                    EmitSignal(SignalName.ProgressChanged, fryingTimer / fryingRecipeResource.fryingTimerMax);
+
                     if (fryingTimer > fryingRecipeResource.fryingTimerMax) {
                         GetKitchenObject().DestroySelf();
                         KitchenObject.SpawnKitchenObject(fryingRecipeResource.output, this);
@@ -37,17 +42,25 @@ public partial class StoveCounter : BaseCounter {
                         state = State.Fried;
                         burningTimer = 0f;
                         burningRecipeResource = GetBurningRecipeResourceWithInput(GetKitchenObject().GetKitchenObjectResource());
+
+                        EmitSignal(SignalName.ProgressChanged, 0f);
+                        EmitSignal(SignalName.StateChanged, (int)state);
                     }
 
                     break;
                 case State.Fried:
                     burningTimer += (float)delta;
 
+                    EmitSignal(SignalName.ProgressChanged, burningTimer / burningRecipeResource.burningTimerMax);
+
                     if (burningTimer > burningRecipeResource.burningTimerMax) {
                         GetKitchenObject().DestroySelf();
                         KitchenObject.SpawnKitchenObject(burningRecipeResource.output, this);
 
                         state = State.Burned;
+
+                        EmitSignal(SignalName.ProgressChanged, 0f);
+                        EmitSignal(SignalName.StateChanged, (int)state);
                     }
 
                     break;
@@ -66,6 +79,9 @@ public partial class StoveCounter : BaseCounter {
                     state = State.Frying;
                     fryingTimer = 0f;
                     fryingRecipeResource = GetFryingRecipeResourceWithInput(GetKitchenObject().GetKitchenObjectResource());
+
+                    EmitSignal(SignalName.ProgressChanged, 0f);
+                    EmitSignal(SignalName.StateChanged, (int)state);
                 }
             }
         } else {
@@ -73,6 +89,9 @@ public partial class StoveCounter : BaseCounter {
                 GetKitchenObject().SetKitchenObjectParent(player);
 
                 state = State.Idle;
+
+                EmitSignal(SignalName.ProgressChanged, 0f);
+                EmitSignal(SignalName.StateChanged, (int)state);
             }
         }
     }

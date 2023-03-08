@@ -7,6 +7,8 @@
 [ext_resource type="Resource" uid="uid://cfwrwoq8fyj3t" path="res://Resources/BurningRecipes/MeatPattyCooked-MeatPattyBurned.tres" id="4_0sx8e"]
 [ext_resource type="Script" path="res://Scripts/Counters/SelectedCounterVisual.cs" id="4_u2g4x"]
 [ext_resource type="Material" uid="uid://cgi0binfje14a" path="res://Materials/CounterSelected.tres" id="5_mckuc"]
+[ext_resource type="Script" path="res://Scripts/Counters/StoveCounterVisual.cs" id="6_r6y8x"]
+[ext_resource type="PackedScene" uid="uid://ct0ab53cprlu6" path="res://Prefabs/ProgressBarUI.tscn" id="8_5jrrr"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_eojlm"]
 _surfaces = [{
@@ -104,43 +106,16 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_x1ldd")
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_y114n"]
-_surfaces = [{
-"aabb": AABB(-50, -3.06162e-15, -50, 100, 1e-05, 100),
-"format": 4097,
-"index_count": 6,
-"index_data": PackedByteArray(0, 0, 3, 0, 1, 0, 3, 0, 0, 0, 2, 0),
-"name": "StoveRedGlow",
-"primitive": 3,
-"vertex_count": 4,
-"vertex_data": PackedByteArray(0, 0, 72, 66, 221, 156, 92, 167, 0, 0, 72, 66, 0, 0, 72, 194, 221, 156, 92, 167, 0, 0, 72, 66, 0, 0, 72, 66, 221, 156, 92, 39, 0, 0, 72, 194, 0, 0, 72, 194, 221, 156, 92, 39, 0, 0, 72, 194)
-}]
-blend_shape_mode = 0
-
-[sub_resource type="ArrayMesh" id="ArrayMesh_cb2su"]
-resource_name = "StoveCounterVisual_Scene003"
-_surfaces = [{
-"aabb": AABB(-50, -3.06162e-15, -50, 100, 1e-05, 100),
-"attribute_data": PackedByteArray(0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0),
-"format": 4119,
-"index_count": 6,
-"index_data": PackedByteArray(0, 0, 3, 0, 1, 0, 3, 0, 0, 0, 2, 0),
-"material": ExtResource("5_mckuc"),
-"name": "StoveRedGlow",
-"primitive": 3,
-"vertex_count": 4,
-"vertex_data": PackedByteArray(0, 0, 72, 66, 221, 156, 92, 167, 0, 0, 72, 66, 255, 127, 0, 0, 0, 0, 255, 191, 0, 0, 72, 194, 221, 156, 92, 167, 0, 0, 72, 66, 255, 127, 0, 0, 0, 0, 255, 191, 0, 0, 72, 66, 221, 156, 92, 39, 0, 0, 72, 194, 255, 127, 0, 0, 0, 0, 255, 191, 0, 0, 72, 194, 221, 156, 92, 39, 0, 0, 72, 194, 255, 127, 0, 0, 0, 0, 255, 191)
-}]
-blend_shape_mode = 0
-shadow_mesh = SubResource("ArrayMesh_y114n")
-
 [node name="StoveCounter" node_paths=PackedStringArray("counterTopPoint") instance=ExtResource("1_7glur")]
 script = ExtResource("2_v6l3d")
 fryingRecipeResourceArray = Array[Resource]([ExtResource("3_ncpm4")])
 burningRecipeResourceArray = Array[Resource]([ExtResource("4_0sx8e")])
 counterTopPoint = NodePath("CounterTopPoint")
 
-[node name="StoveCounterVisual" parent="." index="0" instance=ExtResource("2_r0lej")]
+[node name="StoveCounterVisual" parent="." index="0" node_paths=PackedStringArray("stoveCounter", "visualNode") instance=ExtResource("2_r0lej")]
+script = ExtResource("6_r6y8x")
+stoveCounter = NodePath("..")
+visualNode = NodePath("VisualEffects")
 
 [node name="Selected" parent="." index="1" node_paths=PackedStringArray("baseCounter", "visualNode") instance=ExtResource("2_r0lej")]
 transform = Transform3D(0.0101, 0, 0, 0, -4.41485e-10, -0.0101, 0, 0.0101, -4.41485e-10, 0, 0, 0)
@@ -158,10 +133,11 @@ mesh = SubResource("ArrayMesh_gk4yl")
 [node name="FryingPan" parent="Selected" index="2"]
 mesh = SubResource("ArrayMesh_cs2e3")
 
-[node name="StoveOnVisual" parent="Selected" index="5"]
-mesh = SubResource("ArrayMesh_cb2su")
-
 [node name="CounterTopPoint" parent="." index="3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.04, 1.456, -0.00304292)
 
+[node name="ProgressBarUI" parent="." index="4" node_paths=PackedStringArray("hasProgressNode") instance=ExtResource("8_5jrrr")]
+hasProgressNode = NodePath("..")
+
+[editable path="StoveCounterVisual"]
 [editable path="Selected"]
