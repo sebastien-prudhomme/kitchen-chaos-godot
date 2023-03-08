@@ -236,8 +236,8 @@ mesh = SubResource("ArrayMesh_j74q7")
 [node name="Knife" parent="Selected" index="2"]
 mesh = SubResource("ArrayMesh_jbutu")
 
-[node name="ProgressBarUI" parent="." index="6" node_paths=PackedStringArray("cuttingCounter") instance=ExtResource("10_mb1f1")]
-cuttingCounter = NodePath("..")
+[node name="ProgressBarUI" parent="." index="6" node_paths=PackedStringArray("hasProgressNode") instance=ExtResource("10_mb1f1")]
+hasProgressNode = NodePath("..")
 
 [editable path="CuttingCounterVisual"]
 [editable path="Selected"]
