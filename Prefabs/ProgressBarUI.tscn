@@ -1,0 +1,58 @@
+[gd_scene load_steps=8 format=3 uid="uid://ct0ab53cprlu6"]
+
+[ext_resource type="Script" path="res://Scripts/ProgressBarUI.cs" id="1_dxmf3"]
+[ext_resource type="Script" path="res://Scripts/LookAtCamera.cs" id="2_6x0rx"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_grh2c"]
+size = Vector2(1.1, 0.3)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_s5je7"]
+viewport_path = NodePath("LooktAtCamera/ProgressBar/SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ejgs7"]
+resource_local_to_scene = true
+transparency = 1
+cull_mode = 2
+shading_mode = 0
+albedo_texture = SubResource("ViewportTexture_s5je7")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_02sps"]
+bg_color = Color(0.301961, 0.301961, 0.301961, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0, 0, 0, 1)
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nfntb"]
+bg_color = Color(1, 0.807843, 0, 1)
+
+[node name="ProgressBarUI" type="Node3D" node_paths=PackedStringArray("progressBar")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 2.5, 0)
+script = ExtResource("1_dxmf3")
+progressBar = NodePath("LooktAtCamera/ProgressBar/SubViewport/ProgressBar")
+
+[node name="LooktAtCamera" type="Node3D" parent="."]
+script = ExtResource("2_6x0rx")
+
+[node name="ProgressBar" type="MeshInstance3D" parent="LooktAtCamera"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+mesh = SubResource("QuadMesh_grh2c")
+surface_material_override/0 = SubResource("StandardMaterial3D_ejgs7")
+
+[node name="SubViewport" type="SubViewport" parent="LooktAtCamera/ProgressBar"]
+size = Vector2i(110, 30)
+
+[node name="ProgressBar" type="ProgressBar" parent="LooktAtCamera/ProgressBar/SubViewport"]
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 105.0
+offset_bottom = 25.0
+theme_override_styles/background = SubResource("StyleBoxFlat_02sps")
+theme_override_styles/fill = SubResource("StyleBoxFlat_nfntb")
+value = 50.0
+show_percentage = false
