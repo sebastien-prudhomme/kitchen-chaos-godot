@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://b0yi0nywonr8r"]
 
-[ext_resource type="PackedScene" uid="uid://ycliix5lciak" path="res://Prefabs/Counters/ContainerCounter.tscn" id="1_uwvgc"]
-[ext_resource type="Resource" uid="uid://dive05muq5knu" path="res://Resources/KitchenObjects/MeatPattyUncooked.tres" id="2_a5vlq"]
+[ext_resource type="PackedScene" path="res://Prefabs/Counters/ContainerCounter.tscn" id="1_uwvgc"]
+[ext_resource type="Resource" path="res://Resources/KitchenObjects/MeatPattyUncooked.tres" id="2_a5vlq"]
 [ext_resource type="Texture2D" uid="uid://b1eh11cknvwrd" path="res://Textures/Icons/MeatPattyUncooked.png" id="3_4tm6y"]
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_xb735"]

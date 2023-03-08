@@ -11,9 +11,9 @@
 [ext_resource type="PackedScene" uid="uid://sv1535r1aeon" path="res://PrefabsVisual/PlayerVisual.tscn" id="6_g53ns"]
 [ext_resource type="PackedScene" uid="uid://b0yi0nywonr8r" path="res://Prefabs/Counters/ContainerCounterMeatPattyUncooked.tscn" id="6_s2ewf"]
 [ext_resource type="PackedScene" uid="uid://cpf0t3dt4b8h6" path="res://Prefabs/Counters/ContainerCounterTomato.tscn" id="6_urssm"]
-[ext_resource type="PackedScene" uid="uid://koveux7fsmgn" path="res://Prefabs/Counters/StoveCounter.tscn" id="10_tye1h"]
+[ext_resource type="PackedScene" uid="uid://dtuokh0arl2oq" path="res://Prefabs/Counters/StoveCounter.tscn" id="10_tye1h"]
 [ext_resource type="PackedScene" path="res://Prefabs/Counters/CuttingCounter.tscn" id="12_136gd"]
-[ext_resource type="PackedScene" uid="uid://cxj2b2v1o8ch7" path="res://Prefabs/Counters/TrashCounter.tscn" id="13_v1vem"]
+[ext_resource type="PackedScene" path="res://Prefabs/Counters/TrashCounter.tscn" id="13_v1vem"]
 
 [sub_resource type="Environment" id="Environment_qui31"]
 

@@ -1,8 +1,8 @@
-[gd_resource type="Resource" load_steps=4 format=3]
+[gd_resource type="Resource" load_steps=4 format=3 uid="uid://b7xpsr31rbf2m"]
 
 [ext_resource type="Script" path="res://Scripts/Resources/CuttingRecipeResource.cs" id="1_7eahu"]
-[ext_resource type="Resource" uid="uid://b7tufr4skh4x4" path="res://Resources/KitchenObjects/Cabbage.tres" id="1_r0oci"]
-[ext_resource type="Resource" uid="uid://3slisf35pnm5" path="res://Resources/KitchenObjects/CabbageSlices.tres" id="2_tfacv"]
+[ext_resource type="Resource" path="res://Resources/KitchenObjects/Cabbage.tres" id="1_r0oci"]
+[ext_resource type="Resource" path="res://Resources/KitchenObjects/CabbageSlices.tres" id="2_tfacv"]
 
 [resource]
 script = ExtResource("1_7eahu")

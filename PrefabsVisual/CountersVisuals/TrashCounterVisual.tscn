@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://dfdwpht068dtu"]
 
-[ext_resource type="Material" uid="uid://ufkp4t85hmal" path="res://Materials/TrashBin.tres" id="1_bxen5"]
+[ext_resource type="Material" uid="uid://cg4qc6eycsx1q" path="res://Materials/TrashBin.tres" id="1_bxen5"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_vhp5s"]
 _surfaces = [{
