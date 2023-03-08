@@ -202,7 +202,7 @@ shadow_mesh = SubResource("ArrayMesh_rbkpc")
 size = Vector2(1.1, 0.3)
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_s5je7"]
-viewport_path = NodePath("LooktAtCamera/ProgressBarUI/SubViewport")
+viewport_path = NodePath("ProgressBarUI/LooktAtCamera/ProgressBar/SubViewport")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ejgs7"]
 resource_local_to_scene = true
@@ -265,22 +265,24 @@ mesh = SubResource("ArrayMesh_j74q7")
 [node name="Knife" parent="Selected" index="2"]
 mesh = SubResource("ArrayMesh_jbutu")
 
-[node name="LooktAtCamera" type="Node3D" parent="." index="6"]
+[node name="ProgressBarUI" type="Node3D" parent="." index="6" node_paths=PackedStringArray("cuttingCounter", "progressBar")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 2.5, 0)
+script = ExtResource("10_t782d")
+cuttingCounter = NodePath("..")
+progressBar = NodePath("LooktAtCamera/ProgressBar/SubViewport/ProgressBar")
+
+[node name="LooktAtCamera" type="Node3D" parent="ProgressBarUI" index="0"]
 script = ExtResource("10_46xol")
 
-[node name="ProgressBarUI" type="MeshInstance3D" parent="LooktAtCamera" index="0" node_paths=PackedStringArray("cuttingCounter", "progressBar")]
+[node name="ProgressBar" type="MeshInstance3D" parent="ProgressBarUI/LooktAtCamera" index="0"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 mesh = SubResource("QuadMesh_grh2c")
 surface_material_override/0 = SubResource("StandardMaterial3D_ejgs7")
-script = ExtResource("10_t782d")
-cuttingCounter = NodePath("../..")
-progressBar = NodePath("SubViewport/ProgressBar")
 
-[node name="SubViewport" type="SubViewport" parent="LooktAtCamera/ProgressBarUI" index="0"]
+[node name="SubViewport" type="SubViewport" parent="ProgressBarUI/LooktAtCamera/ProgressBar" index="0"]
 size = Vector2i(110, 30)
 
-[node name="ProgressBar" type="ProgressBar" parent="LooktAtCamera/ProgressBarUI/SubViewport" index="0"]
+[node name="ProgressBar" type="ProgressBar" parent="ProgressBarUI/LooktAtCamera/ProgressBar/SubViewport" index="0"]
 offset_left = 5.0
 offset_top = 5.0
 offset_right = 105.0
