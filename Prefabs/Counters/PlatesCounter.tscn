@@ -7,7 +7,7 @@
 [ext_resource type="Script" path="res://Scripts/Counters/SelectedCounterVisual.cs" id="3_iqyl0"]
 [ext_resource type="Material" uid="uid://cgi0binfje14a" path="res://Materials/CounterSelected.tres" id="4_lmhtn"]
 [ext_resource type="Script" path="res://Scripts/Counters/PlatesCounterVisual.cs" id="5_do6k8"]
-[ext_resource type="PackedScene" uid="uid://11wp53ehiw16" path="res://Prefabs/KitchenObjects/Plate.tscn" id="6_id7n1"]
+[ext_resource type="PackedScene" uid="uid://dtk1qqk4hjudi" path="res://PrefabsVisual/KitchenObjectsVisuals/PlateVisual.tscn" id="6_yd6ff"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_mhfol"]
 _surfaces = [{
@@ -50,7 +50,7 @@ counterTopPoint = NodePath("CounterTopPoint")
 script = ExtResource("5_do6k8")
 platesCounter = NodePath("..")
 counterTopPoint = NodePath("../CounterTopPoint")
-plateVisualPrefab = ExtResource("6_id7n1")
+plateVisualPrefab = ExtResource("6_yd6ff")
 counterTopPoint = NodePath("../CounterTopPoint")
 
 [node name="Selected" parent="." index="1" node_paths=PackedStringArray("baseCounter", "visualNode") instance=ExtResource("2_rc11s")]
