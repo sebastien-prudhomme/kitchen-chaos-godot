@@ -7,10 +7,10 @@ public partial class PlatesCounterVisual : BaseCounter {
     [Export] private Node3D counterTopPoint;
     [Export] private PackedScene plateVisualPrefab;
 
-    private List<Node3D> plateVisualList;
+    private Godot.Collections.Array<Node3D> plateVisualArray;
 
     public override void _EnterTree() {
-        plateVisualList = new List<Node3D>();
+        plateVisualArray = new Godot.Collections.Array<Node3D>();
     }
 
     public override void _Ready() {
@@ -19,9 +19,9 @@ public partial class PlatesCounterVisual : BaseCounter {
     }
 
     private void OnPlayerGrabbedObject() {
-        Node3D plateVisual = plateVisualList[plateVisualList.Count - 1];
+        Node3D plateVisual = plateVisualArray[plateVisualArray.Count - 1];
 
-        plateVisualList.Remove(plateVisual);
+        plateVisualArray.Remove(plateVisual);
         plateVisual.QueueFree();
     }
 
@@ -30,8 +30,8 @@ public partial class PlatesCounterVisual : BaseCounter {
         counterTopPoint.AddChild(plateVisual);
 
         float plateOffsetY = 0.1f;
-        plateVisual.Position = new Vector3(0, plateOffsetY * plateVisualList.Count, 0);
+        plateVisual.Position = new Vector3(0, plateOffsetY * plateVisualArray.Count, 0);
 
-        plateVisualList.Add(plateVisual);
+        plateVisualArray.Add(plateVisual);
     }
 }

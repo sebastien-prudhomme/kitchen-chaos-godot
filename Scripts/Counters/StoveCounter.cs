@@ -85,7 +85,18 @@ public partial class StoveCounter : BaseCounter {
                 }
             }
         } else {
-            if (!player.HasKitchenObject()) {
+            if (player.HasKitchenObject()) {
+                if (player.GetKitchenObject().TryGetPlate(out PlateKitchenObject plateKitchenObject)) {
+                    if (plateKitchenObject.TryAddIngredient(GetKitchenObject().GetKitchenObjectResource())) {
+                        GetKitchenObject().DestroySelf();
+
+                        state = State.Idle;
+
+                        EmitSignal(SignalName.ProgressChanged, 0f);
+                        EmitSignal(SignalName.StateChanged, (int)state);
+                    }
+                }
+            } else {
                 GetKitchenObject().SetKitchenObjectParent(player);
 
                 state = State.Idle;

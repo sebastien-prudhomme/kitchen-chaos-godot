@@ -1,10 +1,55 @@
-[gd_scene load_steps=3 format=3 uid="uid://11wp53ehiw16"]
+[gd_scene load_steps=11 format=3 uid="uid://11wp53ehiw16"]
 
-[ext_resource type="Script" path="res://Scripts/KitchenObject.cs" id="1_l2uyy"]
+[ext_resource type="Script" path="res://Scripts/PlateKitchenObject.cs" id="1_xerhu"]
 [ext_resource type="PackedScene" uid="uid://dtk1qqk4hjudi" path="res://PrefabsVisual/KitchenObjectsVisuals/PlateVisual.tscn" id="2_aopcv"]
+[ext_resource type="Resource" path="res://Resources/KitchenObjects/Bread.tres" id="2_ynke5"]
+[ext_resource type="PackedScene" uid="uid://cnwgy117uim5x" path="res://PrefabsVisual/KitchenObjectsVisuals/PlateCompleteVisual.tscn" id="3_bw3o2"]
+[ext_resource type="Resource" path="res://Resources/KitchenObjects/CabbageSlices.tres" id="3_v07yf"]
+[ext_resource type="Resource" path="res://Resources/KitchenObjects/CheeseSlices.tres" id="4_vmn2o"]
+[ext_resource type="Resource" path="res://Resources/KitchenObjects/MeatPattyBurned.tres" id="5_34xxj"]
+[ext_resource type="Resource" path="res://Resources/KitchenObjects/MeatPattyCooked.tres" id="6_qqkkp"]
+[ext_resource type="Resource" path="res://Resources/KitchenObjects/TomatoSlices.tres" id="7_87aas"]
+[ext_resource type="Script" path="res://Scripts/Counters/PlateCompleteVisual.cs" id="10_6ckvs"]
 
 [node name="Plate" type="Node3D"]
-script = ExtResource("1_l2uyy")
+script = ExtResource("1_xerhu")
+validKitchenObjectResourceArray = Array[Resource]([ExtResource("2_ynke5"), ExtResource("3_v07yf"), ExtResource("4_vmn2o"), ExtResource("5_34xxj"), ExtResource("6_qqkkp"), ExtResource("7_87aas")])
 kitchenObjectResourcePath = "res://Resources/KitchenObjects/Plate.tres"
 
 [node name="PlateVisual" parent="." instance=ExtResource("2_aopcv")]
+
+[node name="PlateCompleteVisual" parent="." node_paths=PackedStringArray("plateKitchenObject", "breadNode3D", "cabbageSlicesNode3D", "cheeseSlicesNode3D", "meatPattyBurnedNode3D", "meatPattyCookedNode3D", "tomatoSlicesNode3D") instance=ExtResource("3_bw3o2")]
+script = ExtResource("10_6ckvs")
+plateKitchenObject = NodePath("..")
+breadKitchenObjectResource = ExtResource("2_ynke5")
+cabbageSlicesKitchenObjectResource = ExtResource("3_v07yf")
+cheeseSlicesKitchenObjectResource = ExtResource("4_vmn2o")
+meatPattyBurnedKitchenObjectResource = ExtResource("5_34xxj")
+meatPattyCookedKitchenObjectResource = ExtResource("6_qqkkp")
+tomatoSlicesKitchenObjectResource = ExtResource("7_87aas")
+breadNode3D = NodePath("Bread")
+cabbageSlicesNode3D = NodePath("CabbageSliced")
+cheeseSlicesNode3D = NodePath("CheeseSlices")
+meatPattyBurnedNode3D = NodePath("MeatPattyBurned")
+meatPattyCookedNode3D = NodePath("MeatPattyCooked")
+tomatoSlicesNode3D = NodePath("TomatoSlices")
+
+[node name="Bread" parent="PlateCompleteVisual" index="0"]
+visible = false
+
+[node name="CabbageSliced" parent="PlateCompleteVisual" index="1"]
+visible = false
+
+[node name="CheeseSlices" parent="PlateCompleteVisual" index="2"]
+visible = false
+
+[node name="MeatPattyBurned" parent="PlateCompleteVisual" index="3"]
+visible = false
+
+[node name="MeatPattyCooked" parent="PlateCompleteVisual" index="4"]
+visible = false
+
+[node name="TomatoSlices" parent="PlateCompleteVisual" index="5"]
+visible = false
+
+[editable path="PlateCompleteVisual"]

@@ -21,7 +21,13 @@ public partial class CuttingCounter : BaseCounter {
                 }
             }
         } else {
-            if (!player.HasKitchenObject()) {
+            if (player.HasKitchenObject()) {
+                if (player.GetKitchenObject().TryGetPlate(out PlateKitchenObject plateKitchenObject)) {
+                    if (plateKitchenObject.TryAddIngredient(GetKitchenObject().GetKitchenObjectResource())) {
+                        GetKitchenObject().DestroySelf();
+                    }
+                }
+            } else {
                 GetKitchenObject().SetKitchenObjectParent(player);
             }
         }
@@ -35,7 +41,7 @@ public partial class CuttingCounter : BaseCounter {
 
             CuttingRecipeResource cuttingRecipeResource = GetCuttingRecipeResourceWithInput(GetKitchenObject().GetKitchenObjectResource());
 
-            EmitSignal(SignalName.ProgressChanged,(float)cuttingProgress / cuttingRecipeResource.cuttingProgressMax);
+            EmitSignal(SignalName.ProgressChanged, (float)cuttingProgress / cuttingRecipeResource.cuttingProgressMax);
 
             if (cuttingProgress >= cuttingRecipeResource.cuttingProgressMax) {
                 GetKitchenObject().DestroySelf();
