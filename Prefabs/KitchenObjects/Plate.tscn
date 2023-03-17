@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://11wp53ehiw16"]
+[gd_scene load_steps=12 format=3 uid="uid://11wp53ehiw16"]
 
 [ext_resource type="Script" path="res://Scripts/PlateKitchenObject.cs" id="1_xerhu"]
 [ext_resource type="PackedScene" uid="uid://dtk1qqk4hjudi" path="res://PrefabsVisual/KitchenObjectsVisuals/PlateVisual.tscn" id="2_aopcv"]
@@ -10,6 +10,7 @@
 [ext_resource type="Resource" path="res://Resources/KitchenObjects/MeatPattyCooked.tres" id="6_qqkkp"]
 [ext_resource type="Resource" path="res://Resources/KitchenObjects/TomatoSlices.tres" id="7_87aas"]
 [ext_resource type="Script" path="res://Scripts/Counters/PlateCompleteVisual.cs" id="10_6ckvs"]
+[ext_resource type="PackedScene" uid="uid://bxm85r57jasex" path="res://Prefabs/PlateIconsUI.tscn" id="11_ync1k"]
 
 [node name="Plate" type="Node3D"]
 script = ExtResource("1_xerhu")
@@ -51,5 +52,8 @@ visible = false
 
 [node name="TomatoSlices" parent="PlateCompleteVisual" index="5"]
 visible = false
+
+[node name="PlateIconsUI" parent="." instance=ExtResource("11_ync1k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
 [editable path="PlateCompleteVisual"]

@@ -1,0 +1,65 @@
+[gd_scene load_steps=7 format=3 uid="uid://bxm85r57jasex"]
+
+[ext_resource type="Script" path="res://Scripts/LookAtCamera.cs" id="1_fi0y3"]
+[ext_resource type="Texture2D" uid="uid://cq3sg0lthloeg" path="res://Textures/Icons/Circle.png" id="1_h2jqr"]
+[ext_resource type="Texture2D" uid="uid://cain06jtqbir3" path="res://Textures/Icons/Bread.png" id="1_ol2wq"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_tcs0a"]
+size = Vector2(0.9, 0.9)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_2mddo"]
+viewport_path = NodePath("LootAtCamera/PlateIcons/SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ogmcm"]
+resource_local_to_scene = true
+transparency = 1
+cull_mode = 2
+shading_mode = 0
+albedo_texture = SubResource("ViewportTexture_2mddo")
+
+[node name="PlateIconsUI" type="Node3D"]
+
+[node name="LootAtCamera" type="Node3D" parent="."]
+script = ExtResource("1_fi0y3")
+
+[node name="PlateIcons" type="MeshInstance3D" parent="LootAtCamera"]
+mesh = SubResource("QuadMesh_tcs0a")
+surface_material_override/0 = SubResource("StandardMaterial3D_ogmcm")
+
+[node name="SubViewport" type="SubViewport" parent="LootAtCamera/PlateIcons"]
+transparent_bg = true
+size = Vector2i(300, 300)
+
+[node name="CenterContainer" type="CenterContainer" parent="LootAtCamera/PlateIcons/SubViewport"]
+offset_right = 300.0
+offset_bottom = 300.0
+
+[node name="GridContainer" type="GridContainer" parent="LootAtCamera/PlateIcons/SubViewport/CenterContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 0
+columns = 3
+
+[node name="IconTemplate" type="Control" parent="LootAtCamera/PlateIcons/SubViewport/CenterContainer/GridContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+
+[node name="Background" type="TextureRect" parent="LootAtCamera/PlateIcons/SubViewport/CenterContainer/GridContainer/IconTemplate"]
+layout_mode = 0
+offset_right = 100.0
+offset_bottom = 100.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource("1_h2jqr")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Icon" type="TextureRect" parent="LootAtCamera/PlateIcons/SubViewport/CenterContainer/GridContainer/IconTemplate"]
+layout_mode = 0
+offset_right = 100.0
+offset_bottom = 100.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource("1_ol2wq")
+expand_mode = 1
+stretch_mode = 5

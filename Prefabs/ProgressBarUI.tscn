@@ -45,6 +45,7 @@ mesh = SubResource("QuadMesh_grh2c")
 surface_material_override/0 = SubResource("StandardMaterial3D_ejgs7")
 
 [node name="SubViewport" type="SubViewport" parent="LooktAtCamera/ProgressBar"]
+transparent_bg = true
 size = Vector2i(110, 30)
 
 [node name="ProgressBar" type="ProgressBar" parent="LooktAtCamera/ProgressBar/SubViewport"]
